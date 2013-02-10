@@ -1,0 +1,76 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_row="3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" 
+    android:orientation="vertical">
+    
+   <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dip" >
+
+    <TextView android:id="@+id/label_kilometers"
+       android:text="@string/label_kilometers" />
+
+    
+    <EditText android:id="@+id/edit_kilometers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_kilometers" 
+        android:inputType="numberDecimal"/>
+    
+    </TableRow>
+    
+   <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dip" >
+    
+     <TextView android:id="@+id/label_liters"
+        android:text="@string/label_liters" />
+    
+     <EditText android:id="@+id/edit_liters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_liters"
+         android:inputType="numberDecimal" />
+     
+     </TableRow>
+     
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dip" >
+
+<!--     <TextView android:id="@+id/label_date" -->
+<!--        android:text="@string/label_date" /> -->
+
+    
+    <DatePicker android:id="@+id/edit_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:calendarViewShown="false"
+        android:layout_span="2"/>
+    
+    </TableRow>
+     
+     <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dip" >
+   
+    <Button android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="calculateFuel"
+        android:text="@string/button_calculate"
+        android:layout_span="2" />
+   </TableRow>
+</TableLayout>
