@@ -34,8 +34,16 @@ public class DisplayMessageActivity extends Activity {
 		showOldUsage.setText("Beim letzten Mal haben Sie " + oldUsage
 				+ " Liter auf 100 Kilometer verbraucht.");
 		TextView showAverageUsage = (TextView) findViewById(R.id.averageUsageText);
-		showAverageUsage.setText("Durchschnittlich haben Sie  " + averageUsage
-				+ " Liter auf 100 Kilometer verbraucht.");
+
+		if (averageUsage != null) {
+			showAverageUsage.setText("Durchschnittlich haben Sie  "
+					+ averageUsage + " Liter auf 100 Kilometer verbraucht.");
+		} else {
+			showAverageUsage
+					.setText("Ihr Durchschnittsverbrauch kann noch nicht angezeigt"
+							+ " werden, da erst ein Tankvorgang erfasst wurde.");
+
+		}
 		Button calculateNew = (Button) findViewById(R.id.button_calcNew);
 
 	}

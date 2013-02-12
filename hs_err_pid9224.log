@@ -1,0 +1,132 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (javaClasses.cpp:129), pid=9224, tid=9740
+#  fatal error: Invalid layout of preloaded class
+#
+# JRE version: 7.0_09-b05
+# Java VM: Java HotSpot(TM) Client VM (23.5-b02 mixed mode windows-x86 )
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0218bc00):  JavaThread "Unknown thread" [_thread_in_vm, id=9740, stack(0x01860000,0x018b0000)]
+
+Stack: [0x01860000,0x018b0000],  sp=0x018af8dc,  free space=318k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x16f2f1]
+V  [jvm.dll+0x169496]
+V  [jvm.dll+0x2082f]
+V  [jvm.dll+0x208b6]
+V  [jvm.dll+0x2e64d]
+V  [jvm.dll+0x2e8f9]
+V  [jvm.dll+0x77d01]
+V  [jvm.dll+0x780bb]
+V  [jvm.dll+0x1290e1]
+V  [jvm.dll+0x149b8a]
+V  [jvm.dll+0xa997f]
+C  [javaw.exe+0x1359]
+C  [javaw.exe+0x1dbb]
+C  [javaw.exe+0xa0eb]
+C  [javaw.exe+0xa175]
+C  [kernel32.dll+0x4d309]  BaseThreadInitThunk+0x12
+C  [ntdll.dll+0x41603]  RtlInitializeExceptionChain+0x63
+C  [ntdll.dll+0x415d6]  RtlInitializeExceptionChain+0x36
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0218bc00 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=9740, stack(0x01860000,0x018b0000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.022 loading class 0x02017198 done
+Event: 0.022 loading class 0x02015c30 done
+Event: 0.022 loading class 0x02015c08
+Event: 0.022 loading class 0x0208c9a0
+Event: 0.022 loading class 0x0208c9a0 done
+Event: 0.022 loading class 0x0208c9d8
+Event: 0.022 loading class 0x0208c9d8 done
+Event: 0.022 loading class 0x02081448
+Event: 0.023 loading class 0x02081448 done
+Event: 0.023 loading class 0x02015c08 done
+
+
+Dynamic libraries:
+0x00340000 - 0x0036f000 	C:\Program Files\Java\jre7\bin\javaw.exe
+0x77c50000 - 0x77d78000 	C:\Windows\system32\ntdll.dll
+0x76310000 - 0x763ec000 	C:\Windows\system32\kernel32.dll
+0x76450000 - 0x76516000 	C:\Windows\system32\ADVAPI32.dll
+0x778d0000 - 0x77993000 	C:\Windows\system32\RPCRT4.dll
+0x77590000 - 0x7762d000 	C:\Windows\system32\USER32.dll
+0x77630000 - 0x7767b000 	C:\Windows\system32\GDI32.dll
+0x75310000 - 0x754ae000 	C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6002.18305_none_5cb72f2a088b0ed3\COMCTL32.dll
+0x77e00000 - 0x77eaa000 	C:\Windows\system32\msvcrt.dll
+0x763f0000 - 0x76449000 	C:\Windows\system32\SHLWAPI.dll
+0x77d80000 - 0x77d9e000 	C:\Windows\system32\IMM32.DLL
+0x76520000 - 0x765e8000 	C:\Windows\system32\MSCTF.dll
+0x77dd0000 - 0x77dd9000 	C:\Windows\system32\LPK.DLL
+0x77ac0000 - 0x77b3d000 	C:\Windows\system32\USP10.dll
+0x66930000 - 0x669ee000 	C:\Program Files\Java\jre7\bin\msvcr100.dll
+0x5aaa0000 - 0x5aded000 	C:\Program Files\Java\jre7\bin\client\jvm.dll
+0x74140000 - 0x74147000 	C:\Windows\system32\WSOCK32.dll
+0x76920000 - 0x7694d000 	C:\Windows\system32\WS2_32.dll
+0x77df0000 - 0x77df6000 	C:\Windows\system32\NSI.dll
+0x74a10000 - 0x74a42000 	C:\Windows\system32\WINMM.dll
+0x76640000 - 0x76785000 	C:\Windows\system32\ole32.dll
+0x77bc0000 - 0x77c4d000 	C:\Windows\system32\OLEAUT32.dll
+0x749d0000 - 0x74a0e000 	C:\Windows\system32\OLEACC.dll
+0x76300000 - 0x76307000 	C:\Windows\system32\PSAPI.DLL
+0x74980000 - 0x7498c000 	C:\Program Files\Java\jre7\bin\verify.dll
+0x743f0000 - 0x74410000 	C:\Program Files\Java\jre7\bin\java.dll
+0x73cf0000 - 0x73d03000 	C:\Program Files\Java\jre7\bin\zip.dll
+0x6bb30000 - 0x6bc0c000 	C:\Windows\system32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=Cp1252 -Xbootclasspath:C:\Users\Kathrin\Documents\Java\Android\adt-bundle-windows-x86\sdk\platforms\android-17\android.jar 
+java_command: org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 52649 -testLoaderClass org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestLoader -loaderpluginname org.eclipse.jdt.junit.runtime -classNames net.kami.ourfirstproject.utils.DateUtilTest
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.7.0_03
+CLASSPATH=.;C:\Program Files\Java\jdk1.7.0_03\jre\lib\ext\QTJava.zip
+PATH=C:/Program Files/Java/jre7/bin/client;C:/Program Files/Java/jre7/bin;C:/Program Files/Java/jre7/lib/i386;C:\Program Files\PC Connectivity Solution\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\Intel\WiFi\bin\;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.7.0_03\bin;C:\Program Files\jEdit;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Git\cmd;C:\Program Files\QuickTime\QTSystem\;C:\Users\Kathrin\Documents\Java\Android\sdk\tools\;C:\Users\Kathrin\Documents\Java\Android\sdk\platform-tools\;C:\Users\Kathrin\Documents\Java\Android\adt-bundle-windows-x86\eclipse;
+USERNAME=Kathrin
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 23 Stepping 6, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows Vista Build 6002 Service Pack 2
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 23 stepping 6, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, tsc
+
+Memory: 4k page, physical 3075116k(1390032k free), swap 6356120k(3830676k free)
+
+vm_info: Java HotSpot(TM) Client VM (23.5-b02) for windows-x86 JRE (1.7.0_09-b05), built on Sep 24 2012 22:01:33 by "java_re" with unknown MS VC++:1600
+
+time: Sun Feb 10 13:27:09 2013
+elapsed time: 0 seconds
+

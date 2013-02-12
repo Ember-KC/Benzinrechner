@@ -1,12 +1,10 @@
 package net.kami.ourfirstproject;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
+import net.kami.ourfirstproject.utils.DateUtil;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -94,9 +92,15 @@ public class DBHelper extends SQLiteOpenHelper {
 	public List<Double> getUsageList() {
 		List<Double> usageList = new ArrayList<Double>();
 		// Select All Query
-		String selectQuery = "SELECT usage FROM " + TABLE_NAME_USAGE
-				+ " WHERE " + COL_DATE + " BETWEEN " + minDate + " AND "
-				+ getMaxDate();
+		String selectQuery = "SELECT usage FROM "
+				+ TABLE_NAME_USAGE
+				+ " WHERE "
+				+ COL_DATE
+				+ " BETWEEN "
+				+ "\""
+				+ DateUtil.getDateAsString(DateUtil.calculateDateByYear(
+						new Date(), -1)) + "\"" + " AND " + "\""
+				+ DateUtil.getDateAsString(new Date()) + "\"";
 
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
@@ -113,16 +117,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		// return contact list
 		return usageList;
-	}
-
-	// TODO JUnit-Test für diese Methode schreiben
-	// Test, ob Git die Ändeurng bemerkt
-	public String getMaxDate() {
-		Date date = new Date(System.currentTimeMillis());
-		DateFormat formatter = new SimpleDateFormat("YYYY-MM-dd", Locale.US);
-		String dateFormatted = formatter.format(date);
-		return dateFormatted;
-
 	}
 
 }
