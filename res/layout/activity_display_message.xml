@@ -55,6 +55,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
      </TableRow>
+     
+     <TableRow>
+            
+        <ImageView 
+        android:contentDescription="@string/smiley"
+        android:id="@+id/smiley"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" />
+         
+     </TableRow>
     
 
 </TableLayout>

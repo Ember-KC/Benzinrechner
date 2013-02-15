@@ -18,7 +18,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-//TODO: Ober- und Untergrenzen für guten Verbrauch einstellen --> auf Anzeigeseite soll Smiley zeigen wie gut Verbrauch ist
+//TODO: auf Anzeigeseite soll Smiley zeigen wie gut Verbrauch im Vergleich zu Durchschnitt ist --> Unit-Test fehlt noch!!!
 
 public class MainActivity extends Activity {
 
@@ -121,8 +121,6 @@ public class MainActivity extends Activity {
 		// Activity being restarted from stopped state
 	}
 
-	// TODO: Businesslogik in separate Klasse auslagern
-
 	public void getFuelValues(View view) {
 		Intent intent = new Intent(this, DisplayMessageActivity.class);
 		// die Navigationselemente werden abgerufen und Variablen zugewiesen
@@ -138,13 +136,12 @@ public class MainActivity extends Activity {
 		double liters = Double.parseDouble(litersString);
 
 		BigDecimal usageRounded = FuelFacade.calculateFuel(liters, kilometers);
-		StringBuilder message = new StringBuilder("Sie haben " + usageRounded
-				+ " Liter auf 100 Kilometer verbraucht.");
+		double usageRoundedDouble = usageRounded.doubleValue();
 
 		// der Verbrauch des vorhergehenden Tankvorgangs und der
 		// Durchschnittsverbrauch werden abgerufen
 		String oldUsage = getOldUsage();
-		String averageUsage = FuelFacade.calculateAverageUsage(this);
+		double averageUsage = FuelFacade.calculateAverageUsage(this);
 
 		// die aktuell eingegebenen Verbrauchsdaten werden in der
 		// Preferences-Datei gespeichert
@@ -160,7 +157,7 @@ public class MainActivity extends Activity {
 		// zusammengestellt
 		intent.putExtra(EXTRA_AVERAGEUSAGE, averageUsage);
 		intent.putExtra(EXTRA_OLDUSAGE, oldUsage);
-		intent.putExtra(EXTRA_MESSAGE, message.toString());
+		intent.putExtra(EXTRA_MESSAGE, usageRoundedDouble);
 		startActivity(intent);
 	}
 

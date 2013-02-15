@@ -22,7 +22,7 @@ public class FuelFacade {
 	// die Methode calculateAverageUsage berechnet den Durchschnittsverbrauch
 	// aus den vorhergegangenen Tankvorgängen. Dabei werden die letzten 12
 	// Monate berücksichtigt.
-	public static String calculateAverageUsage(Context context) {
+	public static double calculateAverageUsage(Context context) {
 		// vorhergehende Verbräuche werden aus der DB abgerufen und in einer
 		// ArrayList gespeichert
 		List<Double> usageList = new ArrayList<Double>();
@@ -30,10 +30,10 @@ public class FuelFacade {
 		usageList = dbh.getUsageList();
 		double averageUsage = 0.00;
 		double usageSum = 0.00;
+		double averageUsageDouble = 0.00;
 
 		// um den Teiler zu ermitteln, wird die Länge der ArrayList ermittelt
 		int size = usageList.size();
-		String averageUsageString = null;
 		// Size darf nicht 0 sein, da sonst später durch 0 geteilt würde und es
 		// dadurch zu einem Fehler kommen würde
 		if (size != 0) {
@@ -51,8 +51,17 @@ public class FuelFacade {
 			BigDecimal averageUsageRounded = new BigDecimal(averageUsage);
 			averageUsageRounded = averageUsageRounded.setScale(2,
 					BigDecimal.ROUND_HALF_UP);
-			averageUsageString = String.valueOf(averageUsageRounded);
+			averageUsageDouble = averageUsageRounded.doubleValue();
 		}
-		return averageUsageString;
+
+		return averageUsageDouble;
+	}
+
+	// Methode gibt true zurück, wenn der aktuelle Verbrauch niedriger ist als
+	// der durchschnittliche Verbrauch
+	public static boolean isCurrentUsageSmaller(double currentUsage,
+			double averageUsage) {
+		return currentUsage <= averageUsage;
+
 	}
 }

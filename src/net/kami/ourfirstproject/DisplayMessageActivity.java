@@ -7,11 +7,13 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends Activity {
 	public final static String EXTRA_KILOMETERS = "net.kami.ourfirstproject.KILOMETERS_MESSAGE";
 	public final static String EXTRA_LITERS = "net.kami.ourfirstproject.LITERS_MESSAGE";
+	int defaultUsage = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -19,25 +21,28 @@ public class DisplayMessageActivity extends Activity {
 
 		// Get the message from the intent
 		Intent intent = getIntent();
-		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+		double usageRounded = intent.getDoubleExtra(MainActivity.EXTRA_MESSAGE,
+				defaultUsage);
 		String oldUsage = intent.getStringExtra(MainActivity.EXTRA_OLDUSAGE);
-		String averageUsage = intent
-				.getStringExtra(MainActivity.EXTRA_AVERAGEUSAGE);
+		double averageUsage = intent.getDoubleExtra(
+				MainActivity.EXTRA_AVERAGEUSAGE, defaultUsage);
 
 		// Message dem bereits bestehenden Textview zuweisen
 
 		// Set the text view as the activity layout
 		setContentView(R.layout.activity_display_message);
 		TextView showMessage = (TextView) findViewById(R.id.usageText);
-		showMessage.setText(message);
+		showMessage.setText(new StringBuilder("Sie haben " + usageRounded
+				+ " Liter auf 100 Kilometer verbraucht."));
 		TextView showOldUsage = (TextView) findViewById(R.id.oldUsageText);
 		showOldUsage.setText("Beim letzten Mal haben Sie " + oldUsage
 				+ " Liter auf 100 Kilometer verbraucht.");
 		TextView showAverageUsage = (TextView) findViewById(R.id.averageUsageText);
 
-		if (averageUsage != null) {
+		if (averageUsage != 0) {
 			showAverageUsage.setText("Durchschnittlich haben Sie  "
 					+ averageUsage + " Liter auf 100 Kilometer verbraucht.");
+
 		} else {
 			showAverageUsage
 					.setText("Ihr Durchschnittsverbrauch kann noch nicht angezeigt"
@@ -45,6 +50,8 @@ public class DisplayMessageActivity extends Activity {
 
 		}
 		Button calculateNew = (Button) findViewById(R.id.button_calcNew);
+
+		this.findSmiley(usageRounded, averageUsage);
 
 	}
 
@@ -73,5 +80,22 @@ public class DisplayMessageActivity extends Activity {
 		// resetValues.putExtra(EXTRA_LITERS, "1");
 		// startActivity(resetValues);
 		finish();
+	}
+
+	public void findSmiley(double usageRounded, double averageUsage) {
+		if (averageUsage > 0) {
+			boolean status = FuelFacade.isCurrentUsageSmaller(usageRounded,
+					averageUsage);
+			ImageView iv = (ImageView) findViewById(R.id.smiley);
+			if (status) {
+				iv.setImageDrawable(getResources().getDrawable(
+						R.drawable.smiley_gut));
+			} else {
+				iv.setImageDrawable(getResources().getDrawable(
+						R.drawable.smiley_schlecht));
+
+			}
+		}
+
 	}
 }

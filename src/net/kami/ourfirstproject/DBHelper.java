@@ -77,6 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			values.put(COL_LITER, liter);
 			values.put(COL_USAGE, usage);
 			rowId = db.insert(TABLE_NAME_USAGE, null, values);
+			db.close();
 
 		} catch (SQLiteException e) {
 			Log.e(TAG, "insert()", e);
@@ -114,6 +115,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			} while (cursor.moveToNext());
 		}
 		cursor.close();
+		db.close();
 
 		// return contact list
 		return usageList;
