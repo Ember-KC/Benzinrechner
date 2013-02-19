@@ -1,5 +1,6 @@
 package net.kami.ourfirstproject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	// Define the version and database file name
 	private static final String DB_NAME = "benzin1.db";
 	private static final int DB_VERSION = 1;
+	private static final String JOURNAL_NAME = DB_NAME + ".db-journal";
 
 	// Name und Attribute der Tabelle "usageTable"
 	private static final String TABLE_NAME_USAGE = "usage_table";
@@ -63,6 +65,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	}
 
+	public void onDelete(Context context) {
+		File file = context.getDatabasePath(DB_NAME);
+		SQLiteDatabase.deleteDatabase(file);
+		Log.i(TAG, "Datenbank gelöscht");
+
+	}
+
 	public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 	}
@@ -83,7 +92,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			Log.e(TAG, "insert()", e);
 
 		} finally {
-			Log.d(TAG, "Insert() : rowId" + rowId);
+			Log.i(TAG, "Insert() : rowId" + rowId);
 
 		}
 	}

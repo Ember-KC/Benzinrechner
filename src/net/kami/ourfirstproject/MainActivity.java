@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 
 import net.kami.ourfirstproject.utils.DateUtil;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +29,8 @@ public class MainActivity extends Activity {
 	public static final String EXTRA_OLDUSAGE = "net.kami.ourfirstproject.OLDUSAGE";
 	public static final String EXTRA_AVERAGEUSAGE = "net.kami.ourfirstproject.AVERAGEUSAGE";
 
+	private static final int DIALOG_WRONG_FORMAT = 1;
+
 	private DBHelper dbhelper;
 
 	@Override
@@ -46,6 +51,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
+
 				String kilometer = editKilometers.getText().toString();
 				String liter = editLiters.getText().toString();
 
@@ -93,6 +99,10 @@ public class MainActivity extends Activity {
 		case R.id.menu_settings:
 			loadSettings();
 			return true;
+		case R.id.menu_deleteDatabase:
+			loadDatabaseReset();
+		case R.id.menu_showUsageList:
+			// TODO: Methode zum Aufruf der UsageListActivity einbinden
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -101,6 +111,12 @@ public class MainActivity extends Activity {
 	private void loadSettings() {
 		Intent settingsIntent = new Intent(this, SettingsActivity.class);
 		startActivity(settingsIntent);
+	}
+
+	private void loadDatabaseReset() {
+		Intent resetDatabaseIntent = new Intent(this,
+				ResetDatabaseActivity.class);
+		startActivity(resetDatabaseIntent);
 	}
 
 	@Override
@@ -135,30 +151,38 @@ public class MainActivity extends Activity {
 		String litersString = editLiters.getText().toString();
 		double liters = Double.parseDouble(litersString);
 
-		BigDecimal usageRounded = FuelFacade.calculateFuel(liters, kilometers);
-		double usageRoundedDouble = usageRounded.doubleValue();
+		if (kilometers > 0 && liters > 0) {
 
-		// der Verbrauch des vorhergehenden Tankvorgangs und der
-		// Durchschnittsverbrauch werden abgerufen
-		String oldUsage = getOldUsage();
-		double averageUsage = FuelFacade.calculateAverageUsage(this);
+			BigDecimal usageRounded = FuelFacade.calculateFuel(liters,
+					kilometers);
+			double usageRoundedDouble = usageRounded.doubleValue();
 
-		// die aktuell eingegebenen Verbrauchsdaten werden in der
-		// Preferences-Datei gespeichert
-		saveUsage(usageRounded);
+			// der Verbrauch des vorhergehenden Tankvorgangs und der
+			// Durchschnittsverbrauch werden abgerufen
+			String oldUsage = getOldUsage();
+			double averageUsage = FuelFacade.calculateAverageUsage(this);
 
-		// die aktuell eingegebenen Verbrauchsdaten werden in der DB gespeichert
-		String dateString = getDate(editDate);
-		dbhelper = new DBHelper(this);
-		saveUsageInDb(dateString, kilometersString, litersString,
-				usageRounded.toString());
+			// die aktuell eingegebenen Verbrauchsdaten werden in der
+			// Preferences-Datei gespeichert
+			saveUsage(usageRounded);
 
-		// die Nachrichten zur Übergabe an die nächste Activity werden
-		// zusammengestellt
-		intent.putExtra(EXTRA_AVERAGEUSAGE, averageUsage);
-		intent.putExtra(EXTRA_OLDUSAGE, oldUsage);
-		intent.putExtra(EXTRA_MESSAGE, usageRoundedDouble);
-		startActivity(intent);
+			// die aktuell eingegebenen Verbrauchsdaten werden in der DB
+			// gespeichert
+			String dateString = getDate(editDate);
+			dbhelper = new DBHelper(this);
+			saveUsageInDb(dateString, kilometersString, litersString,
+					usageRounded.toString());
+
+			// die Nachrichten zur Übergabe an die nächste Activity werden
+			// zusammengestellt
+			intent.putExtra(EXTRA_AVERAGEUSAGE, averageUsage);
+			intent.putExtra(EXTRA_OLDUSAGE, oldUsage);
+			intent.putExtra(EXTRA_MESSAGE, usageRoundedDouble);
+			startActivity(intent);
+		} else {
+			showDialog(1);
+		}
+
 	}
 
 	private String getOldUsage() {
@@ -192,4 +216,25 @@ public class MainActivity extends Activity {
 		Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
 	}
 
+	protected Dialog onCreateDialog(int id) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		if (id == DIALOG_WRONG_FORMAT) {
+			builder.setTitle(R.string.warning_dialog_title);
+			builder.setMessage(R.string.invalid_input_message);
+			builder.setCancelable(false);
+			builder.setPositiveButton(R.string.close,
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// Beim KLick auf den Button wird der Dialog
+							// automatisch geschlossen, dazu ist kein
+							// gesonderter Methodenaufruf notwendig
+						}
+					});
+		}
+		return builder.create();
+
+	}
 }

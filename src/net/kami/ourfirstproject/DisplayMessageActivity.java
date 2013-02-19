@@ -50,8 +50,8 @@ public class DisplayMessageActivity extends Activity {
 
 		}
 		Button calculateNew = (Button) findViewById(R.id.button_calcNew);
-
-		this.findSmiley(usageRounded, averageUsage);
+		ImageView iv = (ImageView) findViewById(R.id.smiley);
+		this.findSmiley(usageRounded, averageUsage, iv);
 
 	}
 
@@ -74,25 +74,21 @@ public class DisplayMessageActivity extends Activity {
 	}
 
 	public void calculateNew(View view) {
-		// Intent resetValues = new Intent(this, MainActivity.class);
-		//
-		// resetValues.putExtra(EXTRA_KILOMETERS, "1");
-		// resetValues.putExtra(EXTRA_LITERS, "1");
-		// startActivity(resetValues);
 		finish();
 	}
 
-	public void findSmiley(double usageRounded, double averageUsage) {
+	public void findSmiley(double usageRounded, double averageUsage,
+			ImageView iv) {
 		if (averageUsage > 0) {
-			boolean status = FuelFacade.isCurrentUsageSmaller(usageRounded,
-					averageUsage);
-			ImageView iv = (ImageView) findViewById(R.id.smiley);
-			if (status) {
+
+			if (usageRounded <= averageUsage) {
 				iv.setImageDrawable(getResources().getDrawable(
 						R.drawable.smiley_gut));
+				iv.setTag("smiley_gut");
 			} else {
 				iv.setImageDrawable(getResources().getDrawable(
 						R.drawable.smiley_schlecht));
+				iv.setTag("smiley_schlecht");
 
 			}
 		}

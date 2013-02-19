@@ -57,11 +57,4 @@ public class FuelFacade {
 		return averageUsageDouble;
 	}
 
-	// Methode gibt true zurück, wenn der aktuelle Verbrauch niedriger ist als
-	// der durchschnittliche Verbrauch
-	public static boolean isCurrentUsageSmaller(double currentUsage,
-			double averageUsage) {
-		return currentUsage <= averageUsage;
-
-	}
 }
