@@ -2,6 +2,7 @@ package net.kami.ourfirstproject;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,6 +29,9 @@ public class ResetDatabaseActivity extends Activity {
 	public void confirmDatabaseReset(View view) {
 		DBHelper dbh = new DBHelper(this);
 		dbh.onDelete(this);
+		Log.i(TAG,
+				"Datenbank zurückgesetzt, Tabelle"
+						+ DBHelper.getTableNameUsage() + " geleert");
 		Toast.makeText(this, R.string.database_reset, Toast.LENGTH_SHORT)
 				.show();
 		finish();

@@ -1,6 +1,5 @@
 package net.kami.ourfirstproject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +20,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	// Define the version and database file name
 	private static final String DB_NAME = "benzin1.db";
 	private static final int DB_VERSION = 1;
-	private static final String JOURNAL_NAME = DB_NAME + ".db-journal";
 
 	// Name und Attribute der Tabelle "usageTable"
 	private static final String TABLE_NAME_USAGE = "usage_table";
@@ -34,14 +32,18 @@ public class DBHelper extends SQLiteOpenHelper {
 	// Tabelle erstellen
 
 	private static final String TABLE_USAGE_CREATE = "CREATE TABLE "
-			+ TABLE_NAME_USAGE + " ( " + COL_ID
+			+ getTableNameUsage() + " ( " + COL_ID
 			+ " INTEGER PRIMARY KEY AUTOINCREMENT , " + COL_DATE + " STRING, "
 			+ COL_KILOMETER + " STRING , " + COL_LITER + " STRING , "
 			+ COL_USAGE + " STRING);";
 
 	// Tabelle löschen
 	private static final String TABLE_USAGE_DROP = "DROP TABLE IF EXISTS "
-			+ TABLE_NAME_USAGE;
+			+ getTableNameUsage();
+
+	// Tabelle leeren
+	private static final String TABLE_USAGE_DELETE_ENTRIES = "DELETE FROM "
+			+ getTableNameUsage() + ";";
 
 	// Constructor to simplify Business logic access to the repository
 	public DBHelper(Context context) {
@@ -66,9 +68,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 
 	public void onDelete(Context context) {
-		File file = context.getDatabasePath(DB_NAME);
-		SQLiteDatabase.deleteDatabase(file);
-		Log.i(TAG, "Datenbank gelöscht");
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL(TABLE_USAGE_DELETE_ENTRIES);
 
 	}
 
@@ -85,7 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			values.put(COL_KILOMETER, kilometer);
 			values.put(COL_LITER, liter);
 			values.put(COL_USAGE, usage);
-			rowId = db.insert(TABLE_NAME_USAGE, null, values);
+			rowId = db.insert(getTableNameUsage(), null, values);
 			db.close();
 
 		} catch (SQLiteException e) {
@@ -103,7 +104,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		List<Double> usageList = new ArrayList<Double>();
 		// Select All Query
 		String selectQuery = "SELECT usage FROM "
-				+ TABLE_NAME_USAGE
+				+ getTableNameUsage()
 				+ " WHERE "
 				+ COL_DATE
 				+ " BETWEEN "
@@ -128,6 +129,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		// return contact list
 		return usageList;
+	}
+
+	public static String getTableNameUsage() {
+		return TABLE_NAME_USAGE;
 	}
 
 }

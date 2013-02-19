@@ -3,6 +3,9 @@ package net.kami.ourfirstproject;
 import java.math.BigDecimal;
 
 import net.kami.ourfirstproject.utils.DateUtil;
+
+import org.apache.commons.lang3.StringUtils;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -31,6 +34,10 @@ public class MainActivity extends Activity {
 
 	private static final int DIALOG_WRONG_FORMAT = 1;
 
+	private EditText editKilometers;
+	private EditText editLiters;
+	private DatePicker editDate;
+
 	private DBHelper dbhelper;
 
 	@Override
@@ -42,9 +49,9 @@ public class MainActivity extends Activity {
 		Button button = (Button) findViewById(R.id.button);
 		button.setEnabled(false);
 
-		final EditText editKilometers = (EditText) findViewById(R.id.edit_kilometers);
-		final EditText editLiters = (EditText) findViewById(R.id.edit_liters);
-		final DatePicker editDate = (DatePicker) findViewById(R.id.edit_date);
+		editKilometers = (EditText) findViewById(R.id.edit_kilometers);
+		editLiters = (EditText) findViewById(R.id.edit_liters);
+		editDate = (DatePicker) findViewById(R.id.edit_date);
 
 		TextWatcher textwatcher = new TextWatcher() {
 
@@ -68,6 +75,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
+
 			}
 		};
 
@@ -129,10 +137,38 @@ public class MainActivity extends Activity {
 		super.onRestart();
 		// Set the text view as the activity layout
 		setContentView(R.layout.activity_main);
-		EditText editKilometers = (EditText) findViewById(R.id.edit_kilometers);
+		editKilometers = (EditText) findViewById(R.id.edit_kilometers);
 		editKilometers.setText(null);
-		EditText editLiters = (EditText) findViewById(R.id.edit_liters);
+		editLiters = (EditText) findViewById(R.id.edit_liters);
 		editLiters.setText(null);
+		TextWatcher textwatcher = new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+
+				String kilometer = editKilometers.getText().toString();
+				String liter = editLiters.getText().toString();
+
+				Button button = (Button) findViewById(R.id.button);
+				button.setEnabled(kilometer.length() > 0 && liter.length() > 0);
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		};
+
+		editKilometers.addTextChangedListener(textwatcher);
+		editLiters.addTextChangedListener(textwatcher);
 
 		// Activity being restarted from stopped state
 	}
@@ -147,38 +183,44 @@ public class MainActivity extends Activity {
 		// die eingegebenen Werte für die Navigationselemente werden abgerufen
 		// und Variablen zugewiesen
 		String kilometersString = editKilometers.getText().toString();
-		double kilometers = Double.parseDouble(kilometersString);
 		String litersString = editLiters.getText().toString();
-		double liters = Double.parseDouble(litersString);
+		double kilometers = 0.00;
+		double liters = 0.00;
+		if (StringUtils.isNotBlank(kilometersString)
+				&& StringUtils.isNotBlank(litersString)) {
+			kilometers = Double.parseDouble(kilometersString);
+			liters = Double.parseDouble(litersString);
 
-		if (kilometers > 0 && liters > 0) {
+			if (kilometers > 0 && liters > 0) {
 
-			BigDecimal usageRounded = FuelFacade.calculateFuel(liters,
-					kilometers);
-			double usageRoundedDouble = usageRounded.doubleValue();
+				BigDecimal usageRounded = FuelFacade.calculateFuel(liters,
+						kilometers);
+				double usageRoundedDouble = usageRounded.doubleValue();
 
-			// der Verbrauch des vorhergehenden Tankvorgangs und der
-			// Durchschnittsverbrauch werden abgerufen
-			String oldUsage = getOldUsage();
-			double averageUsage = FuelFacade.calculateAverageUsage(this);
+				// der Verbrauch des vorhergehenden Tankvorgangs und der
+				// Durchschnittsverbrauch werden abgerufen
+				String oldUsage = getOldUsage();
+				double averageUsage = FuelFacade.calculateAverageUsage(this);
 
-			// die aktuell eingegebenen Verbrauchsdaten werden in der
-			// Preferences-Datei gespeichert
-			saveUsage(usageRounded);
+				// die aktuell eingegebenen Verbrauchsdaten werden in der
+				// Preferences-Datei gespeichert
+				saveUsage(usageRounded);
 
-			// die aktuell eingegebenen Verbrauchsdaten werden in der DB
-			// gespeichert
-			String dateString = getDate(editDate);
-			dbhelper = new DBHelper(this);
-			saveUsageInDb(dateString, kilometersString, litersString,
-					usageRounded.toString());
+				// die aktuell eingegebenen Verbrauchsdaten werden in der DB
+				// gespeichert
+				String dateString = getDate(editDate);
+				dbhelper = new DBHelper(this);
+				saveUsageInDb(dateString, kilometersString, litersString,
+						usageRounded.toString());
 
-			// die Nachrichten zur Übergabe an die nächste Activity werden
-			// zusammengestellt
-			intent.putExtra(EXTRA_AVERAGEUSAGE, averageUsage);
-			intent.putExtra(EXTRA_OLDUSAGE, oldUsage);
-			intent.putExtra(EXTRA_MESSAGE, usageRoundedDouble);
-			startActivity(intent);
+				// die Nachrichten zur Übergabe an die nächste Activity werden
+				// zusammengestellt
+				intent.putExtra(EXTRA_AVERAGEUSAGE, averageUsage);
+				intent.putExtra(EXTRA_OLDUSAGE, oldUsage);
+				intent.putExtra(EXTRA_MESSAGE, usageRoundedDouble);
+				startActivity(intent);
+			}
+
 		} else {
 			showDialog(1);
 		}
@@ -237,4 +279,5 @@ public class MainActivity extends Activity {
 		return builder.create();
 
 	}
+
 }

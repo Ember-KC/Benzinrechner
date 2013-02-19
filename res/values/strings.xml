@@ -21,7 +21,7 @@
     <string name="button_abortDatabaseReset">Abbrechen</string>
     <string name="button_confirmDatasbaseReset">OK</string>
     <string name="title_reset_database">Datenbank zurücksetzen</string>
-    <string name="reset_database_text">Wollen Sie die Datenbank wirklich löschen?</string>
+    <string name="reset_database_text">Wollen Sie die Datenbank wirklich zurücksetzen? Dadurch werden alle Werte gelöscht.</string>
     <string name="database_reset">Datenbank zurückgesetzt.</string>
     <string name="warning_dialog_title">Warnung</string>
     <string name="invalid_input_message">Sie haben ungültige Daten eingegeben. Bitte geben Sie nur Werte an, die größer 0 sind.</string>
