@@ -26,6 +26,12 @@
     <string name="warning_dialog_title">Warnung</string>
     <string name="invalid_input_message">Sie haben ungültige Daten eingegeben. Bitte geben Sie nur Werte an, die größer 0 sind.</string>
     <string name="close">Schließen</string>
+    <string name="title_usage_list">Verbrauchsliste</string>
+    <string name="string_liters">Liter</string>
+    <string name="average_usage_text">Durchschnittlicher Verbrauch auf 100 Kilometer: \u0020</string>
+    <string name="current_usage_text">Ihr Verbrauch auf 100 Kilometern: \u0020</string>
+    <string name="average_usage_not_displayed">Ihr Durchschnittsverbrauch kann noch nicht angezeigt werden, da erst ein Tankvorgang erfasst wurde.</string>
+    <string name="old_usage_text">Verbrauch beim letzten Mal auf 100 Kilometern: \u0020</string>
     
     
     

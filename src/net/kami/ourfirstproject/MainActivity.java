@@ -110,7 +110,7 @@ public class MainActivity extends Activity {
 		case R.id.menu_deleteDatabase:
 			loadDatabaseReset();
 		case R.id.menu_showUsageList:
-			// TODO: Methode zum Aufruf der UsageListActivity einbinden
+			loadUsageList();
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -127,11 +127,18 @@ public class MainActivity extends Activity {
 		startActivity(resetDatabaseIntent);
 	}
 
+	private void loadUsageList() {
+		Intent usageListIntent = new Intent(this, UsageList.class);
+		startActivity(usageListIntent);
+	}
+
 	@Override
 	protected void onStart() {
 		super.onStart();
 	}
 
+	// TODO: beim Restart ist Button ab Beginn aktiviert, sollte nach dem ersten
+	// Drücken deaktiviert sein
 	@Override
 	protected void onRestart() {
 		super.onRestart();
@@ -199,7 +206,7 @@ public class MainActivity extends Activity {
 
 				// der Verbrauch des vorhergehenden Tankvorgangs und der
 				// Durchschnittsverbrauch werden abgerufen
-				String oldUsage = getOldUsage();
+				Double oldUsage = getOldUsage();
 				double averageUsage = FuelFacade.calculateAverageUsage(this);
 
 				// die aktuell eingegebenen Verbrauchsdaten werden in der
@@ -227,13 +234,14 @@ public class MainActivity extends Activity {
 
 	}
 
-	private String getOldUsage() {
+	private Double getOldUsage() {
 		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 		String defaultUsage = getResources().getString(
 				R.string.old_usage_default);
 		String oldUsage = sharedPref.getString(getString(R.string.save_usage),
 				defaultUsage);
-		return oldUsage;
+		Double oldUsageDouble = Double.parseDouble(oldUsage);
+		return oldUsageDouble;
 	}
 
 	// TODO: Speicherung in Datei entfernen und letzten Verbrauch aus DB lesen
@@ -258,8 +266,8 @@ public class MainActivity extends Activity {
 		Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
 	}
 
-	protected Dialog onCreateDialog(int id) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	protected Dialog onCreateDialog(int id, Context context) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
 		if (id == DIALOG_WRONG_FORMAT) {
 			builder.setTitle(R.string.warning_dialog_title);

@@ -1,5 +1,6 @@
 package net.kami.ourfirstproject;
 
+import net.kami.ourfirstproject.utils.NumberUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +24,8 @@ public class DisplayMessageActivity extends Activity {
 		Intent intent = getIntent();
 		double usageRounded = intent.getDoubleExtra(MainActivity.EXTRA_MESSAGE,
 				defaultUsage);
-		String oldUsage = intent.getStringExtra(MainActivity.EXTRA_OLDUSAGE);
+		double oldUsage = intent.getDoubleExtra(MainActivity.EXTRA_OLDUSAGE,
+				defaultUsage);
 		double averageUsage = intent.getDoubleExtra(
 				MainActivity.EXTRA_AVERAGEUSAGE, defaultUsage);
 
@@ -32,21 +34,22 @@ public class DisplayMessageActivity extends Activity {
 		// Set the text view as the activity layout
 		setContentView(R.layout.activity_display_message);
 		TextView showMessage = (TextView) findViewById(R.id.usageText);
-		showMessage.setText(new StringBuilder("Sie haben " + usageRounded
-				+ " Liter auf 100 Kilometer verbraucht."));
+		showMessage.setText(new StringBuilder(this
+				.getString(R.string.current_usage_text)
+				+ NumberUtil.formatDecimalNumber(usageRounded, this)));
 		TextView showOldUsage = (TextView) findViewById(R.id.oldUsageText);
-		showOldUsage.setText("Beim letzten Mal haben Sie " + oldUsage
-				+ " Liter auf 100 Kilometer verbraucht.");
+		showOldUsage.setText(this.getString(R.string.old_usage_text)
+				+ NumberUtil.formatDecimalNumber(oldUsage, this));
 		TextView showAverageUsage = (TextView) findViewById(R.id.averageUsageText);
 
 		if (averageUsage != 0) {
-			showAverageUsage.setText("Durchschnittlich haben Sie  "
-					+ averageUsage + " Liter auf 100 Kilometer verbraucht.");
+			showAverageUsage.setText(this
+					.getString(R.string.average_usage_text)
+					+ NumberUtil.formatDecimalNumber(averageUsage, this));
 
 		} else {
-			showAverageUsage
-					.setText("Ihr Durchschnittsverbrauch kann noch nicht angezeigt"
-							+ " werden, da erst ein Tankvorgang erfasst wurde.");
+			showAverageUsage.setText(this
+					.getString(R.string.average_usage_not_displayed));
 
 		}
 		Button calculateNew = (Button) findViewById(R.id.button_calcNew);
