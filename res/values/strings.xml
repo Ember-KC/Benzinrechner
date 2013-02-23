@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Benzinrechner</string>
+    <string name="app_name">Benzin Rechner</string>
     <string name="label_kilometers">Kilometer:</string>
     <string name="edit_kilometers">Gefahrene Kilometer</string>
     <string name="label_liters">Liter:</string>
@@ -19,7 +19,7 @@
     <string name="saved">Gespeichert</string>
     <string name="smiley">Smiley</string>
     <string name="button_abortDatabaseReset">Abbrechen</string>
-    <string name="button_confirmDatasbaseReset">OK</string>
+    <string name="button_confirmDatabaseReset">OK</string>
     <string name="title_reset_database">Datenbank zurücksetzen</string>
     <string name="reset_database_text">Wollen Sie die Datenbank wirklich zurücksetzen? Dadurch werden alle Werte gelöscht.</string>
     <string name="database_reset">Datenbank zurückgesetzt.</string>
@@ -28,10 +28,10 @@
     <string name="close">Schließen</string>
     <string name="title_usage_list">Verbrauchsliste</string>
     <string name="string_liters">Liter</string>
-    <string name="average_usage_text">Durchschnittlicher Verbrauch auf 100 Kilometer: \u0020</string>
-    <string name="current_usage_text">Ihr Verbrauch auf 100 Kilometern: \u0020</string>
+    <string name="average_usage_text">Durchschnittlicher Verbrauch auf 100 Kilometer: \u0020 </string>
+    <string name="current_usage_text">Ihr Verbrauch auf 100 Kilometern: \u0020 </string>
     <string name="average_usage_not_displayed">Ihr Durchschnittsverbrauch kann noch nicht angezeigt werden, da erst ein Tankvorgang erfasst wurde.</string>
-    <string name="old_usage_text">Verbrauch beim letzten Mal auf 100 Kilometern: \u0020</string>
+    <string name="old_usage_text">Verbrauch beim letzten Mal auf 100 Kilometern: \u0020 </string>
     
     
     

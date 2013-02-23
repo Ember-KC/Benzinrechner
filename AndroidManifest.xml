@@ -41,22 +41,12 @@
         </activity>
         <activity 
             android:name="net.kami.ourfirstproject.ResetDatabaseActivity"
-            android:label="@string/title_reset_database"
-            android:parentActivityName="net.kami.ourfirstproject.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.kami.ourfirstproject.MainActivity" />
-            
+            android:label="@string/title_reset_database" >            
             
         </activity>
          <activity 
             android:name="net.kami.ourfirstproject.UsageList"
-            android:label="@string/title_usage_list"
-            android:parentActivityName="net.kami.ourfirstproject.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.kami.ourfirstproject.MainActivity" />
-            
+            android:label="@string/title_usage_list" >            
             
         </activity>
     </application>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fuel Calculator</string>
+    <string name="label_kilometers">Kilometers:</string>
+    <string name="edit_kilometers">Kilometers driven</string>
+    <string name="label_liters">Liters:</string>
+    <string name="edit_liters">Tanked Liters</string>
+    <string name="label_date">Date:</string>
+    <string name="button_calculate">Calculate</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_deleteDatabase">Reset database</string>
+    <string name="menu_showUsageList">Show usage list</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_display_message">Fuel used</string>
+    <string name="button_calcNew">New calculation</string>
+    <string name="save_usage">Save usage</string>
+    <string name="old_usage_default">0.00</string>
+    <string name="saved">Saved</string>
+    <string name="smiley">Smiley</string>
+    <string name="button_abortDatabaseReset">Abort</string>
+    <string name="button_confirmDatasbaseReset">OK</string>
+    <string name="title_reset_database">Reset Database</string>
+    <string name="reset_database_text">Do you really want to reset the database? All entries will be deleted.</string>
+    <string name="database_reset">Database reset.</string>
+    <string name="warning_dialog_title">Warning</string>
+    <string name="invalid_input_message">You have entered invalid data. Please only enter values bigger than 0.</string>
+    <string name="close">Close</string>
+    <string name="title_usage_list">Usage list</string>
+    <string name="string_liters">Liters</string>
+    <string name="average_usage_text">Average usage per 100 kilometers: \u0020</string>
+    <string name="current_usage_text">You usage per 100 kilometers: \u0020</string>
+    <string name="average_usage_not_displayed">Your average usage cannot be displayed yet.</string>
+    <string name="old_usage_text">Last usage per 100 kliometers: \u0020</string>
+    
+    
+    
+
+</resources>

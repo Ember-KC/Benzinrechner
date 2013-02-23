@@ -17,7 +17,7 @@ public class ResetDatabaseActivity extends Activity {
 
 		setContentView(R.layout.reset_database_activity);
 		TextView text = (TextView) findViewById(R.id.reset_database_text);
-		Button buttonOk = (Button) findViewById(R.id.button_confirmDatasbaseReset);
+		Button buttonOk = (Button) findViewById(R.id.button_confirmDatabaseReset);
 		Button buttonAbort = (Button) findViewById(R.id.button_abortDatabaseReset);
 
 	}

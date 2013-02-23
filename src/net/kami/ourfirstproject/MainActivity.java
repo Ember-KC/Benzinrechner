@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -97,7 +98,8 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.activity_main, menu);
 		return true;
 	}
 
@@ -105,31 +107,17 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_settings:
-			loadSettings();
+			startActivity(new Intent(this, SettingsActivity.class));
 			return true;
 		case R.id.menu_deleteDatabase:
-			loadDatabaseReset();
+			startActivity(new Intent(this, ResetDatabaseActivity.class));
+			return true;
 		case R.id.menu_showUsageList:
-			loadUsageList();
+			startActivity(new Intent(this, UsageList.class));
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-	}
-
-	private void loadSettings() {
-		Intent settingsIntent = new Intent(this, SettingsActivity.class);
-		startActivity(settingsIntent);
-	}
-
-	private void loadDatabaseReset() {
-		Intent resetDatabaseIntent = new Intent(this,
-				ResetDatabaseActivity.class);
-		startActivity(resetDatabaseIntent);
-	}
-
-	private void loadUsageList() {
-		Intent usageListIntent = new Intent(this, UsageList.class);
-		startActivity(usageListIntent);
 	}
 
 	@Override
@@ -137,8 +125,6 @@ public class MainActivity extends Activity {
 		super.onStart();
 	}
 
-	// TODO: beim Restart ist Button ab Beginn aktiviert, sollte nach dem ersten
-	// Drücken deaktiviert sein
 	@Override
 	protected void onRestart() {
 		super.onRestart();
@@ -148,6 +134,9 @@ public class MainActivity extends Activity {
 		editKilometers.setText(null);
 		editLiters = (EditText) findViewById(R.id.edit_liters);
 		editLiters.setText(null);
+		Button button = (Button) findViewById(R.id.button);
+		button.setEnabled(false);
+
 		TextWatcher textwatcher = new TextWatcher() {
 
 			@Override
@@ -173,7 +162,6 @@ public class MainActivity extends Activity {
 
 			}
 		};
-
 		editKilometers.addTextChangedListener(textwatcher);
 		editLiters.addTextChangedListener(textwatcher);
 

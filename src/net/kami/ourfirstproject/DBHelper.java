@@ -70,6 +70,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void onDelete(Context context) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.execSQL(TABLE_USAGE_DELETE_ENTRIES);
+		db.close();
 
 	}
 
@@ -127,7 +128,37 @@ public class DBHelper extends SQLiteOpenHelper {
 		cursor.close();
 		db.close();
 
-		// return contact list
+		return usageList;
+	}
+
+	public List<String> getUsageListWithDate() {
+		List<String> usageList = new ArrayList<String>();
+		// Select All Query
+		String selectQuery = "SELECT usage, date FROM "
+				+ getTableNameUsage()
+				+ " WHERE "
+				+ COL_DATE
+				+ " BETWEEN "
+				+ "\""
+				+ DateUtil.getDateAsString(DateUtil.calculateDateByYear(
+						new Date(), -1)) + "\"" + " AND " + "\""
+				+ DateUtil.getDateAsString(new Date()) + "\"";
+
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+
+		// looping through all rows and adding to list
+		if (cursor.moveToFirst()) {
+			do {
+				String usageDate = cursor.getString(0) + " ("
+						+ cursor.getString(1) + ")";
+				// Adding usage to list
+				usageList.add(usageDate);
+			} while (cursor.moveToNext());
+		}
+		cursor.close();
+		db.close();
+
 		return usageList;
 	}
 

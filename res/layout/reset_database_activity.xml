@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_row="2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ResetDatabaseActivity" 
     android:orientation="vertical"
     android:id="@+id/resetTable">
-    
-   <TableRow
-       android:id="@+id/resetTableRow1"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:padding="1dip" >
 
-       <TextView
-           android:id="@+id/reset_database_text"
-           android:layout_width="match_parent"
-           android:layout_span="2"
-           android:text="@string/reset_database_text" />
-        
-    </TableRow>
+    <TextView
+            android:id="@+id/reset_database_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="20dip"
+            android:text="@string/reset_database_text" 
+            android:textSize="16sp"/>
 
-   <TableRow
-       android:id="@+id/resetTableRow2"
+ <LinearLayout 
+       android:id="@+id/resetButtonGroup"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
+       android:orientation="horizontal"
        android:padding="1dip" >
 
        <Button
-           android:id="@+id/button_confirmDatasbaseReset"
-           android:layout_width="match_parent"
+           android:id="@+id/button_confirmDatabaseReset"
            android:layout_height="wrap_content"
+           android:layout_width="0dp"
+           android:layout_marginLeft="5dip"
+           android:layout_marginRight="5dip"
            android:onClick="confirmDatabaseReset"
-           android:text="@string/button_confirmDatasbaseReset" />
+           android:text="@string/button_confirmDatabaseReset" 
+           android:layout_weight="1"/>
 
        <Button
            android:id="@+id/button_abortDatabaseReset"
-           android:layout_width="match_parent"
            android:layout_height="wrap_content"
+           android:layout_width="0dp"
+           android:layout_marginLeft="5dip"
+           android:layout_marginRight="5dip"
            android:onClick="abortDatabaseReset"
-           android:text="@string/button_abortDatabaseReset" />
-   </TableRow>
-        
-</TableLayout>
+           android:text="@string/button_abortDatabaseReset" 
+           android:layout_weight="1"/>
+ 	</LinearLayout>
+ </LinearLayout>
