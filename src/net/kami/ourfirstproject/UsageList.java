@@ -11,7 +11,7 @@ import android.view.View;
 public class UsageList extends ListActivity {
 
 	// Schnittstelle zur Datenbank
-	private DBHelper dbHandler;
+	private DBHelper dbh;
 	// wird für die Listenansicht benötigt
 	private Cursor dbCursor;
 	// bildet den Cursor auf die ListView ab
@@ -23,8 +23,8 @@ public class UsageList extends ListActivity {
 		// Tippen und Halten öffnet Menü
 		registerForContextMenu(getListView());
 
-		dbHandler = new DBHelper(this);
-		dbCursor = dbHandler.query();
+		dbh = new DBHelper(this);
+		dbCursor = dbh.query();
 		// Activity übernimmt Verwaltung des Cursors
 		startManagingCursor(dbCursor);
 
@@ -35,7 +35,7 @@ public class UsageList extends ListActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		dbHandler.close();
+		dbh.close();
 	}
 
 	@Override
