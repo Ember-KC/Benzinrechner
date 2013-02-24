@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	// Name und Attribute der Tabelle "usageTable"
 	private static final String TABLE_NAME_USAGE = "usage_table";
-	private static final String COL_ID = "id";
+	private static final String COL_ID = "_id";
 	public static final String COL_DATE = "date";
 	private static final String COL_KILOMETER = "kilometer";
 	private static final String COL_LITER = "liter";
@@ -169,7 +169,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public Cursor query() {
 
 		SQLiteDatabase db = getWritableDatabase();
-		String[] columns = { COL_USAGE, COL_DATE };
+		String[] columns = { COL_ID, COL_USAGE, COL_DATE };
 		String selection = COL_DATE
 				+ " BETWEEN "
 				+ "\""
@@ -177,6 +177,6 @@ public class DBHelper extends SQLiteOpenHelper {
 						new Date(), -1)) + "\"" + " AND " + "\""
 				+ DateUtil.getDateAsString(new Date()) + "\"";
 		return db.query(TABLE_NAME_USAGE, columns, selection, null, null, null,
-				COL_DATE);
+				COL_DATE + " DESC");
 	}
 }
