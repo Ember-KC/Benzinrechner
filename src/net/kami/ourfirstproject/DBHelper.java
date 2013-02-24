@@ -24,10 +24,10 @@ public class DBHelper extends SQLiteOpenHelper {
 	// Name und Attribute der Tabelle "usageTable"
 	private static final String TABLE_NAME_USAGE = "usage_table";
 	private static final String COL_ID = "id";
-	private static final String COL_DATE = "date";
+	public static final String COL_DATE = "date";
 	private static final String COL_KILOMETER = "kilometer";
 	private static final String COL_LITER = "liter";
-	private static final String COL_USAGE = "usage";
+	public static final String COL_USAGE = "usage";
 
 	// Tabelle erstellen
 
@@ -166,4 +166,17 @@ public class DBHelper extends SQLiteOpenHelper {
 		return TABLE_NAME_USAGE;
 	}
 
+	public Cursor query() {
+
+		SQLiteDatabase db = getWritableDatabase();
+		String[] columns = { COL_USAGE, COL_DATE };
+		String selection = COL_DATE
+				+ " BETWEEN "
+				+ "\""
+				+ DateUtil.getDateAsString(DateUtil.calculateDateByYear(
+						new Date(), -1)) + "\"" + " AND " + "\""
+				+ DateUtil.getDateAsString(new Date()) + "\"";
+		return db.query(TABLE_NAME_USAGE, columns, selection, null, null, null,
+				COL_DATE);
+	}
 }

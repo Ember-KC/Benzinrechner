@@ -103,6 +103,9 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	// TODO: XML-Export ergänzen, dazu sollten die Einträge pro Tankvorgang auf
+	// ein
+	// eigenes Objekt gemappt werden
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -242,8 +245,9 @@ public class MainActivity extends Activity {
 		editor.commit();
 	}
 
-	// TODO: über Kontextmenü zugängliche Liste der letzten Verbräuche
-	// zugänglich machen, in der auch ggf. falsch erfasste Werte geändert werden
+	// TODO: über Kontextmenü zugängliche Liste der letzten Verbräuche (mit
+	// Datum)
+	// zugänglich machen, in der auch falsch erfasste Werte gelöscht werden
 	// können
 
 	// die Methode saveUsageInDB speichert die aktuellen Verbrauchsdaten in der
