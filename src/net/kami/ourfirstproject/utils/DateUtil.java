@@ -1,6 +1,7 @@
 package net.kami.ourfirstproject.utils;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,6 +38,16 @@ public class DateUtil {
 		calendar.add(Calendar.YEAR, deltaYears);
 		return calendar.getTime();
 
+	}
+
+	// TODO: formatiert aktuell bei Locale DE nach dem Pattern dd.mm.yy hh:mm,
+	// muss geändert werden in dd.mm.yyyy
+	public static String parseDateForLocale(String dateString)
+			throws ParseException {
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat formatterLocale = new SimpleDateFormat();
+		Date date = formatter.parse(dateString);
+		return formatterLocale.format(date);
 	}
 
 	public static String convert(int number, int digit) {

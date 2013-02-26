@@ -1,5 +1,7 @@
 package net.kami.ourfirstproject;
 
+import net.kami.ourfirstproject.utils.DateUtil;
+import net.kami.ourfirstproject.utils.NumberUtil;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
@@ -30,10 +32,16 @@ public class UsageListCursorAdapter extends CursorAdapter {
 
 		TextView textview1 = (TextView) view.findViewById(R.id.litersText);
 		TextView textview2 = (TextView) view.findViewById(R.id.dateText);
-		String liters = cursor.getString(ciLiters);
+		Double liters = Double.parseDouble(cursor.getString(ciLiters));
 		String dateString = cursor.getString(ciDate);
-		Log.d(TAG, "Liter: " + liters);
-		textview1.setText(liters);
+		try {
+			dateString = DateUtil.parseDateForLocale(dateString);
+
+		} catch (java.text.ParseException p) {
+			Log.d(TAG, "Error when parsing date" + dateString);
+
+		}
+		textview1.setText(NumberUtil.formatDecimalNumber(liters, context));
 		textview2.setText(dateString);
 	}
 
