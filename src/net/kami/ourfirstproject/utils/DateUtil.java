@@ -7,6 +7,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import net.kami.ourfirstproject.R;
+import android.content.Context;
+
 public class DateUtil {
 
 	/**
@@ -40,12 +43,11 @@ public class DateUtil {
 
 	}
 
-	// TODO: formatiert aktuell bei Locale DE nach dem Pattern dd.mm.yy hh:mm,
-	// muss geändert werden in dd.mm.yyyy
-	public static String parseDateForLocale(String dateString)
+	public static String parseDateForLocale(String dateString, Context context)
 			throws ParseException {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		DateFormat formatterLocale = new SimpleDateFormat();
+		DateFormat formatterLocale = new SimpleDateFormat(
+				context.getString(R.string.simple_date_format_pattern));
 		Date date = formatter.parse(dateString);
 		return formatterLocale.format(date);
 	}

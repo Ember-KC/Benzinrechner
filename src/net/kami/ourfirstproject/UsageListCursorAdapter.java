@@ -35,7 +35,7 @@ public class UsageListCursorAdapter extends CursorAdapter {
 		Double liters = Double.parseDouble(cursor.getString(ciLiters));
 		String dateString = cursor.getString(ciDate);
 		try {
-			dateString = DateUtil.parseDateForLocale(dateString);
+			dateString = DateUtil.parseDateForLocale(dateString, context);
 
 		} catch (java.text.ParseException p) {
 			Log.d(TAG, "Error when parsing date" + dateString);

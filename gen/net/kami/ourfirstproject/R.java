@@ -65,7 +65,7 @@ public final class R {
         public static final int button_calcNew=0x7f05000c;
         public static final int button_calculate=0x7f050006;
         public static final int button_confirmDatabaseReset=0x7f050012;
-        public static final int button_confirmDatasbaseReset=0x7f05001f;
+        public static final int button_confirmDatasbaseReset=0x7f050020;
         public static final int close=0x7f050018;
         public static final int current_usage_text=0x7f05001c;
         public static final int database_reset=0x7f050015;
@@ -83,16 +83,17 @@ public final class R {
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f050021;
-        public static final int pref_title_display_name=0x7f050022;
+        public static final int pref_header_general=0x7f050022;
+        public static final int pref_title_display_name=0x7f050023;
         public static final int reset_database_text=0x7f050014;
         public static final int save_usage=0x7f05000d;
         public static final int saved=0x7f05000f;
+        public static final int simple_date_format_pattern=0x7f05001f;
         public static final int smiley=0x7f050010;
         public static final int string_liters=0x7f05001a;
         public static final int title_activity_display_message=0x7f05000b;
         public static final int title_activity_main=0x7f05000a;
-        public static final int title_activity_settings=0x7f050020;
+        public static final int title_activity_settings=0x7f050021;
         public static final int title_reset_database=0x7f050013;
         public static final int title_usage_list=0x7f050019;
         public static final int warning_dialog_title=0x7f050016;

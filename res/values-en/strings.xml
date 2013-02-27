@@ -32,6 +32,7 @@
     <string name="current_usage_text">You usage per 100 kilometers: \u0020</string>
     <string name="average_usage_not_displayed">Your average usage cannot be displayed yet.</string>
     <string name="old_usage_text">Last usage per 100 kliometers: \u0020</string>
+    <string name="simple_date_format_pattern">dd-MM-yyyy</string>
     
     
     
