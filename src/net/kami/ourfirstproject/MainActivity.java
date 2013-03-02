@@ -6,7 +6,6 @@ import net.kami.ourfirstproject.utils.DateUtil;
 
 import org.apache.commons.lang3.StringUtils;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -17,7 +16,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +25,7 @@ import android.widget.Toast;
 
 //TODO: auf Anzeigeseite soll Smiley zeigen wie gut Verbrauch im Vergleich zu Durchschnitt ist --> Unit-Test fehlt noch!!!
 
-public class MainActivity extends Activity {
+public class MainActivity extends OptionMenuActivity {
 
 	public static final String EXTRA_MESSAGE = "net.kami.ourfirstproject.MESSAGE";
 	public static final String EXTRA_OLDUSAGE = "net.kami.ourfirstproject.OLDUSAGE";
@@ -97,9 +95,7 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.activity_main, menu);
+		super.onCreateOptionsMenu(menu);
 		return true;
 	}
 
@@ -108,19 +104,8 @@ public class MainActivity extends Activity {
 	// eigenes Objekt gemappt werden
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_settings:
-			startActivity(new Intent(this, SettingsActivity.class));
-			return true;
-		case R.id.menu_deleteDatabase:
-			startActivity(new Intent(this, ResetDatabaseActivity.class));
-			return true;
-		case R.id.menu_showUsageList:
-			startActivity(new Intent(this, UsageList.class));
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
+		super.onOptionsItemSelected(item);
+		return true;
 	}
 
 	@Override

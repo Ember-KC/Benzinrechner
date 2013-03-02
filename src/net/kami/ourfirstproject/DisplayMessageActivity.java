@@ -1,17 +1,16 @@
 package net.kami.ourfirstproject;
 
 import net.kami.ourfirstproject.utils.NumberUtil;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DisplayMessageActivity extends Activity {
+public class DisplayMessageActivity extends OptionMenuActivity {
 	public final static String EXTRA_KILOMETERS = "net.kami.ourfirstproject.KILOMETERS_MESSAGE";
 	public final static String EXTRA_LITERS = "net.kami.ourfirstproject.LITERS_MESSAGE";
 	int defaultUsage = 0;
@@ -59,21 +58,18 @@ public class DisplayMessageActivity extends Activity {
 	}
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		return true;
+	}
+
+	// TODO: XML-Export ergänzen, dazu sollten die Einträge pro Tankvorgang auf
+	// ein
+	// eigenes Objekt gemappt werden
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home: // This ID represents the
-			// Home or Up button. In the case of this // activity, the Up button
-			// is
-			// shown. Use NavUtils to allow users // to navigate up one level in
-			// the
-			// application structure. For // more details, see the Navigation
-			// pattern on
-			// Android Design: // //
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		super.onOptionsItemSelected(item);
+		return true;
 	}
 
 	public void calculateNew(View view) {

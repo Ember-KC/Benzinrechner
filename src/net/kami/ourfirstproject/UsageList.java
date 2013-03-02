@@ -5,8 +5,10 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class UsageList extends ListActivity {
 
@@ -43,16 +45,24 @@ public class UsageList extends ListActivity {
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		// Kontextmenü entfalten
-		/*
-		 * MenuInflater inflater = getMenuInflater();
-		 * inflater.inflate(R.menu.context_menu, menu);
-		 */
+		MenuInflater inflater = getMenuInflater();
+		menu.setHeaderTitle(this.getString(R.string.contextmenu_title));
+		inflater.inflate(R.menu.usage_list_contextmenu, menu);
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		return false;
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+		switch (item.getItemId()) {
 
+		case R.id.menu_delete_entry:
+			dbh.delete(info.id);
+			updateList();
+			return true;
+		default:
+			return super.onContextItemSelected(item);
+		}
 	}
 
 	private void updateList() {

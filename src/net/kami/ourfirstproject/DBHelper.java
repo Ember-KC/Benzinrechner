@@ -179,4 +179,12 @@ public class DBHelper extends SQLiteOpenHelper {
 		return db.query(TABLE_NAME_USAGE, columns, selection, null, null, null,
 				COL_DATE + " DESC");
 	}
+
+	public void delete(long id) {
+		// ggf. Datenbank öffnen
+		SQLiteDatabase db = getWritableDatabase();
+		int numDeleted = db.delete(TABLE_NAME_USAGE, COL_ID + " = ?",
+				new String[] { Long.toString(id) });
+		Log.d(TAG, "delete(): id=" + id + " -> " + numDeleted);
+	}
 }

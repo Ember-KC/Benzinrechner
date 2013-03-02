@@ -33,6 +33,8 @@
     <string name="average_usage_not_displayed">Ihr Durchschnittsverbrauch kann noch nicht angezeigt werden, da erst ein Tankvorgang erfasst wurde.</string>
     <string name="old_usage_text">Verbrauch beim letzten Mal auf 100 Kilometern: \u0020 </string>
     <string name="simple_date_format_pattern">dd.MM.yyyy</string>
+    <string name= "menu_delete_entry">Eintrag löschen</string>
+    <string name="contextmenu_title">Mögliche Aktionen</string>
     
     
     
