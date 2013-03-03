@@ -18,8 +18,8 @@
     <string name="old_usage_default">0.00</string>
     <string name="saved">Gespeichert</string>
     <string name="smiley">Smiley</string>
-    <string name="button_abortDatabaseReset">Abbrechen</string>
-    <string name="button_confirmDatabaseReset">OK</string>
+    <string name="button_abortAction">Abbrechen</string>
+    <string name="button_confirmAction">OK</string>
     <string name="title_reset_database">Datenbank zurücksetzen</string>
     <string name="reset_database_text">Wollen Sie die Datenbank wirklich zurücksetzen? Dadurch werden alle Werte gelöscht.</string>
     <string name="database_reset">Datenbank zurückgesetzt.</string>
@@ -35,6 +35,9 @@
     <string name="simple_date_format_pattern">dd.MM.yyyy</string>
     <string name= "menu_delete_entry">Eintrag löschen</string>
     <string name="contextmenu_title">Mögliche Aktionen</string>
+    <string name="confirm_delete">Löschen bestätigen</string>
+    <string name="delete_entry_question">Möchten Sie diesen Eintrag wirklich löschen?</string>
+    
     
     
     

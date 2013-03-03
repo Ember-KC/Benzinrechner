@@ -1,9 +1,6 @@
 package net.kami.ourfirstproject.activities;
 
 import net.kami.ourfirstproject.R;
-import net.kami.ourfirstproject.R.id;
-import net.kami.ourfirstproject.R.layout;
-import net.kami.ourfirstproject.R.string;
 import net.kami.ourfirstproject.datahandling.DBHelper;
 import android.app.Activity;
 import android.os.Bundle;

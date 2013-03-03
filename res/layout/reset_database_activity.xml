@@ -32,7 +32,7 @@
            android:layout_marginLeft="5dip"
            android:layout_marginRight="5dip"
            android:onClick="confirmDatabaseReset"
-           android:text="@string/button_confirmDatabaseReset" 
+           android:text="@string/button_confirmAction" 
            android:layout_weight="1"/>
 
        <Button
@@ -42,7 +42,7 @@
            android:layout_marginLeft="5dip"
            android:layout_marginRight="5dip"
            android:onClick="abortDatabaseReset"
-           android:text="@string/button_abortDatabaseReset" 
+           android:text="@string/button_abortAction" 
            android:layout_weight="1"/>
  	</LinearLayout>
  </LinearLayout>

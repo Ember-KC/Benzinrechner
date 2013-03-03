@@ -249,6 +249,7 @@ public class MainActivity extends OptionMenuActivity {
 		Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
 	}
 
+	// TODO Dialog wird nicht mehr gezeigt, muss geprüft werden
 	protected Dialog onCreateDialog(int id, Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
