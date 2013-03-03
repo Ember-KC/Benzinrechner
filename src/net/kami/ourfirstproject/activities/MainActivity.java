@@ -13,7 +13,6 @@ import net.kami.ourfirstproject.utils.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,8 +35,6 @@ public class MainActivity extends OptionMenuActivity {
 	public static final String EXTRA_MESSAGE = "net.kami.ourfirstproject.MESSAGE";
 	public static final String EXTRA_OLDUSAGE = "net.kami.ourfirstproject.OLDUSAGE";
 	public static final String EXTRA_AVERAGEUSAGE = "net.kami.ourfirstproject.AVERAGEUSAGE";
-
-	private static final int DIALOG_WRONG_FORMAT = 1;
 
 	private EditText editKilometers;
 	private EditText editLiters;
@@ -209,8 +206,9 @@ public class MainActivity extends OptionMenuActivity {
 				startActivity(intent);
 			}
 
-		} else {
-			showDialog(1);
+			else {
+				showAlertDialog(this);
+			}
 		}
 
 	}
@@ -249,27 +247,25 @@ public class MainActivity extends OptionMenuActivity {
 		Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
 	}
 
-	// TODO Dialog wird nicht mehr gezeigt, muss geprüft werden
-	protected Dialog onCreateDialog(int id, Context context) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+	private void showAlertDialog(Context context) {
+		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
-		if (id == DIALOG_WRONG_FORMAT) {
-			builder.setTitle(R.string.warning_dialog_title);
-			builder.setMessage(R.string.invalid_input_message);
-			builder.setCancelable(false);
-			builder.setPositiveButton(R.string.close,
-					new DialogInterface.OnClickListener() {
+		// Setting Dialog Title
+		alertDialog.setTitle(R.string.warning_dialog_title);
 
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// Beim KLick auf den Button wird der Dialog
-							// automatisch geschlossen, dazu ist kein
-							// gesonderter Methodenaufruf notwendig
-						}
-					});
-		}
-		return builder.create();
+		// Setting Dialog Message
+		alertDialog.setMessage(this.getString(R.string.invalid_input_message));
 
+		alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,
+				this.getString(R.string.button_confirmAction),
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+
+					}
+				});
+
+		// Showing Alert Message
+		alertDialog.show();
 	}
 
 }

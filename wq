@@ -1,0 +1,100 @@
+[33mcommit 891feba9b4e2a8d490017be88207631132cfa03c[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Sat Mar 2 16:46:18 2013 +0100
+
+    Added context menu to UsageList to delete single entry; outsourced options
+    menu into new class OptionMenuActivity
+
+[33mcommit c56e5ba307009feda679fa1ad0a8a93d32bfcd33[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Wed Feb 27 19:42:32 2013 +0100
+
+    date format in UsageList is displayed depending on locale
+
+[33mcommit 9fd1ecfd45ea970ae19d5f7bd45260f391f1bf2c[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Tue Feb 26 22:50:02 2013 +0100
+
+    Modifications to UsageList: added locale specific number formatting,
+    started to add local specific date formatting.
+
+[33mcommit 51e49abc5644088e2b20afea78ff2b39f8870855[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Sun Feb 24 16:53:22 2013 +0100
+
+    Working version of UsageList with display of liters and dates
+
+[33mcommit 6acbed38b54d459fa2d9fa618a73e2f4198f1a68[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Sun Feb 24 15:50:40 2013 +0100
+
+    Changes to UsageList
+
+[33mcommit fecbf9e5c1e39e7970883c0826c3aa7b26bab6eb[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Sun Feb 24 15:32:46 2013 +0100
+
+    Modification to UsageList so that liters and date are displayed in
+    different font sizes
+
+[33mcommit d3f6af12bf2ac48b2d3553073c1eb6776bb65911[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Sat Feb 23 22:20:27 2013 +0100
+
+    Added localisation for English language; integrated UsageList Activity
+
+[33mcommit 3bd745c799ae84334ee8fc2fcd3334032202f6e7[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Thu Feb 21 20:08:10 2013 +0100
+
+    Added NumberUtil class for converting Doubles according to default locale,
+    extracted hard-coded strings to string.xml
+
+[33mcommit a19e5eb252153e555a2d1d48d6adc423fad6bbfb[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Tue Feb 19 22:00:59 2013 +0100
+
+    Adapt reset database to API-level 15, fixed problem with empty fields in
+    ActivityMain
+
+[33mcommit 481575f2e4f561b96fe03da0b5184359f233f695[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Tue Feb 19 16:41:08 2013 +0100
+
+    Neue Activity zum Zurücksetzen der Datenbank, Dialog in MainActivity der
+    bei Eingabe ungültiger Werte angezeigt wird
+
+[33mcommit 712db8d28de86a5be39c09c9ac43bec0519f397c[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Fri Feb 15 19:59:50 2013 +0100
+
+    Smiley-Anzeige in Abhängigkeit vom Durchschnittsverbrauch
+
+[33mcommit 18954e0b8cff28ee6aca00f7441aefab525c5de2[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Tue Feb 12 21:12:00 2013 +0100
+
+    FuelFacade mit extrahierten Methoden, kleine Änderungen an den anderen
+    Klassen
+
+[33mcommit dc9debc56e59e63a04fd1f3c33474714a28964a1[m
+Merge: 3679c89 d0ce816
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Sun Feb 10 12:08:59 2013 +0100
+
+    Merge branch 'master' of https://github.com/Ember-KC/Benzinrechner
+    
+    Conflicts:
+    	.gitignore
+
+[33mcommit 3679c89ffde103f168aa77de6334649f2117368b[m
+Author: Kathrin Siegmann <kathrinsiegmann@gmx.de>
+Date:   Sun Feb 10 12:03:16 2013 +0100
+
+    Initialer Commit für Benzinrechner-App
+
+[33mcommit d0ce816d10566dcfe37f8b100c156dd54a9587b4[m
+Author: Ember-KC <kasi2003@gmx.de>
+Date:   Sun Feb 10 02:59:49 2013 -0800
+
+    Initial commit

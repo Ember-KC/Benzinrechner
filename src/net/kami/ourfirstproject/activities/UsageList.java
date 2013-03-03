@@ -95,7 +95,6 @@ public class UsageList extends ListActivity {
 		alertDialog.setNegativeButton(R.string.button_abortAction,
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						// Write your code here to invoke NO event
 
 						dialog.cancel();
 					}
