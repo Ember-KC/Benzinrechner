@@ -1,6 +1,5 @@
 package net.kami.ourfirstproject.datahandling;
 
-
 public class FuelEntry {
 	private double liters;
 	private double kilometers;

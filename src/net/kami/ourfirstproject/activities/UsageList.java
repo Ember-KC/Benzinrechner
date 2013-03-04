@@ -1,7 +1,12 @@
 package net.kami.ourfirstproject.activities;
 
+import java.util.List;
+
 import net.kami.ourfirstproject.R;
 import net.kami.ourfirstproject.datahandling.DBHelper;
+import net.kami.ourfirstproject.datahandling.FuelEntry;
+import net.kami.ourfirstproject.datahandling.FuelEntryDAO;
+import net.kami.ourfirstproject.datahandling.UsageListArrayAdapter;
 import net.kami.ourfirstproject.datahandling.UsageListCursorAdapter;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -15,6 +20,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class UsageList extends ListActivity {
 
@@ -25,25 +32,29 @@ public class UsageList extends ListActivity {
 	// bildet den Cursor auf die ListView ab
 	private UsageListCursorAdapter listAdapter;
 
+	// TODO: Liste zeigt falsche bzw. doppelte Werte an, außerdem stürzt App
+	// beim Löschen von Werten ab
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.list_view);
 		// Tippen und Halten öffnet Menü
 		registerForContextMenu(getListView());
 
-		dbh = new DBHelper(this);
-		dbCursor = dbh.query();
-		// Activity übernimmt Verwaltung des Cursors
-		startManagingCursor(dbCursor);
+		List<FuelEntry> fuelEntries = FuelEntryDAO.getInstance()
+				.getEntryForListView(this);
 
-		listAdapter = new UsageListCursorAdapter(this, dbCursor);
-		setListAdapter(listAdapter);
+		ArrayAdapter<FuelEntry> listAdapter = new UsageListArrayAdapter(this,
+				R.layout.list_view, fuelEntries);
+
+		ListView meineListView = (ListView) findViewById(android.R.id.list);
+		meineListView.setAdapter(listAdapter);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		dbh.close();
 	}
 
 	@Override
@@ -106,7 +117,6 @@ public class UsageList extends ListActivity {
 
 	private void updateList() {
 		// zunächst Cursor, dann Liste aktualisieren
-		dbCursor.requery();
 		listAdapter.notifyDataSetChanged();
 	}
 }

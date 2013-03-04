@@ -102,9 +102,6 @@ public class MainActivity extends OptionMenuActivity {
 		return true;
 	}
 
-	// TODO: XML-Export ergänzen, dazu sollten die Einträge pro Tankvorgang auf
-	// ein
-	// eigenes Objekt gemappt werden
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		super.onOptionsItemSelected(item);

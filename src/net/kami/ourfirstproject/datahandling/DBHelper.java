@@ -25,8 +25,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String TABLE_NAME_USAGE = "usage_table";
 	private static final String COL_ID = "_id";
 	public static final String COL_DATE = "date";
-	private static final String COL_KILOMETER = "kilometer";
-	private static final String COL_LITER = "liter";
+	public static final String COL_KILOMETER = "kilometer";
+	public static final String COL_LITER = "liter";
 	public static final String COL_USAGE = "usage";
 
 	// Tabelle erstellen
@@ -134,7 +134,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public List<String> getUsageListWithDate() {
 		List<String> usageList = new ArrayList<String>();
 		// Select All Query
-		String selectQuery = "SELECT usage, date FROM "
+		String selectQuery = "SELECT * FROM "
 				+ getTableNameUsage()
 				+ " WHERE "
 				+ COL_DATE

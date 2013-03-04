@@ -6,7 +6,14 @@
     android:orientation="vertical" 
     tools:context=".UsageList"
     android:id="@+id/usageList">
-
+    
+    <ListView
+  		android:id="@android:id/list"
+  		android:layout_width="match_parent"
+  		android:layout_height="wrap_content" >
+  	        
+	</ListView>
+     
     <TextView
         android:id="@+id/litersText"
         android:textIsSelectable="false"
@@ -23,5 +30,7 @@
         android:layout_height="wrap_content"
         
         />
+
+    
 
 </LinearLayout> 

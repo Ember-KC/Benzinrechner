@@ -1,10 +1,6 @@
 package net.kami.ourfirstproject.activities;
 
 import net.kami.ourfirstproject.R;
-import net.kami.ourfirstproject.R.drawable;
-import net.kami.ourfirstproject.R.id;
-import net.kami.ourfirstproject.R.layout;
-import net.kami.ourfirstproject.R.string;
 import net.kami.ourfirstproject.utils.NumberUtil;
 import android.content.Intent;
 import android.os.Bundle;
@@ -68,9 +64,6 @@ public class DisplayMessageActivity extends OptionMenuActivity {
 		return true;
 	}
 
-	// TODO: XML-Export ergänzen, dazu sollten die Einträge pro Tankvorgang auf
-	// ein
-	// eigenes Objekt gemappt werden
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		super.onOptionsItemSelected(item);
