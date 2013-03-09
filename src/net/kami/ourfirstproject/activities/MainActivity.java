@@ -40,8 +40,6 @@ public class MainActivity extends OptionMenuActivity {
 	private EditText editLiters;
 	private DatePicker editDate;
 
-	private List<FuelEntry> fuelEntryList = new ArrayList<FuelEntry>();
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -230,15 +228,14 @@ public class MainActivity extends OptionMenuActivity {
 		editor.commit();
 	}
 
-	// TODO: über Kontextmenü zugängliche Liste der letzten Verbräuche (mit
-	// Datum)
-	// zugänglich machen, in der auch falsch erfasste Werte gelöscht werden
-	// können
-
 	// die Methode saveUsageInDB speichert die aktuellen Verbrauchsdaten in der
 	// Datenbank
+	// TODO: Integrationtest ergänzen, der prüft ob die richtige Menge an
+	// Einträgen in der DB gespeichert werden & ggf. Create-Timestamp als ID
+	// hinzufügen
 	public void saveUsageInDb(String date, double kilometer, double liter,
 			double usage) {
+		List<FuelEntry> fuelEntryList = new ArrayList<FuelEntry>();
 		fuelEntryList.add(new FuelEntry(liter, kilometer, date, usage));
 		FuelEntryDAO.getInstance().saveEntry(fuelEntryList, this);
 		Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();

@@ -11,6 +11,7 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_deleteDatabase">Datenbank zurücksetzen</string>
     <string name="menu_showUsageList">Verbrauchsliste anzeigen</string>
+    <string name="menu_exportXML">Verbrauchsliste exportieren (XML)</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">Ihr Verbrauch</string>
     <string name="button_calcNew">Neu berechnen</string>
@@ -37,6 +38,7 @@
     <string name="contextmenu_title">Mögliche Aktionen</string>
     <string name="confirm_delete">Löschen bestätigen</string>
     <string name="delete_entry_question">Möchten Sie diesen Eintrag wirklich löschen?</string>
+    <string name="error_write_xml">Fehler beim Schreiben der XML-Datei</string>
     
     
     

@@ -11,6 +11,7 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_deleteDatabase">Reset database</string>
     <string name="menu_showUsageList">Show usage list</string>
+    <string name="menu_exportXML">Export usage list (XML)</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">Fuel used</string>
     <string name="button_calcNew">New calculation</string>
@@ -37,6 +38,8 @@
     <string name="contextmenu_title">Possible actions</string>
     <string name="confirm_delete">Confirm delete</string>
     <string name="delete_entry_question">Do you really want to delete this entry?</string>
+    <string name="error_write_xml">Error writing XML file</string>
+    
     
      
     

@@ -1,13 +1,7 @@
 package net.kami.ourfirstproject.datahandling;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import net.kami.ourfirstproject.utils.DateUtil;
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -99,92 +93,18 @@ public class DBHelper extends SQLiteOpenHelper {
 		}
 	}
 
-	// minDate: Tagesdatum minus ein Jahr
-	// maxDate: Tagesdatum
-	public List<Double> getUsageList() {
-		List<Double> usageList = new ArrayList<Double>();
-		// Select All Query
-		String selectQuery = "SELECT usage FROM "
-				+ getTableNameUsage()
-				+ " WHERE "
-				+ COL_DATE
-				+ " BETWEEN "
-				+ "\""
-				+ DateUtil.getDateAsString(DateUtil.calculateDateByYear(
-						new Date(), -1)) + "\"" + " AND " + "\""
-				+ DateUtil.getDateAsString(new Date()) + "\"";
-
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-
-		// looping through all rows and adding to list
-		if (cursor.moveToFirst()) {
-			do {
-				double usage = Double.parseDouble(cursor.getString(0));
-				// Adding usage to list
-				usageList.add(usage);
-			} while (cursor.moveToNext());
-		}
-		cursor.close();
-		db.close();
-
-		return usageList;
-	}
-
-	public List<String> getUsageListWithDate() {
-		List<String> usageList = new ArrayList<String>();
-		// Select All Query
-		String selectQuery = "SELECT * FROM "
-				+ getTableNameUsage()
-				+ " WHERE "
-				+ COL_DATE
-				+ " BETWEEN "
-				+ "\""
-				+ DateUtil.getDateAsString(DateUtil.calculateDateByYear(
-						new Date(), -1)) + "\"" + " AND " + "\""
-				+ DateUtil.getDateAsString(new Date()) + "\"";
-
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(selectQuery, null);
-
-		// looping through all rows and adding to list
-		if (cursor.moveToFirst()) {
-			do {
-				String usageDate = cursor.getString(0) + " ("
-						+ cursor.getString(1) + ")";
-				// Adding usage to list
-				usageList.add(usageDate);
-			} while (cursor.moveToNext());
-		}
-		cursor.close();
-		db.close();
-
-		return usageList;
-	}
-
 	public static String getTableNameUsage() {
 		return TABLE_NAME_USAGE;
 	}
 
-	public Cursor query() {
-
-		SQLiteDatabase db = getWritableDatabase();
-		String[] columns = { COL_ID, COL_USAGE, COL_DATE };
-		String selection = COL_DATE
-				+ " BETWEEN "
-				+ "\""
-				+ DateUtil.getDateAsString(DateUtil.calculateDateByYear(
-						new Date(), -1)) + "\"" + " AND " + "\""
-				+ DateUtil.getDateAsString(new Date()) + "\"";
-		return db.query(TABLE_NAME_USAGE, columns, selection, null, null, null,
-				COL_DATE + " DESC");
-	}
-
-	public void delete(long id) {
+	public void delete(String date, String kilometer, String liter, String usage) {
 		// ggf. Datenbank öffnen
 		SQLiteDatabase db = getWritableDatabase();
-		int numDeleted = db.delete(TABLE_NAME_USAGE, COL_ID + " = ?",
-				new String[] { Long.toString(id) });
-		Log.d(TAG, "delete(): id=" + id + " -> " + numDeleted);
+		int numDeleted = db.delete(TABLE_NAME_USAGE, COL_KILOMETER + " = ?"
+				+ " AND " + COL_LITER + " =?" + " AND " + COL_DATE + " =?"
+				+ " AND " + COL_USAGE + " =?", new String[] { kilometer, liter,
+				date, usage });
+		db.close();
+		Log.i(TAG, "delete(): row =" + numDeleted);
 	}
 }

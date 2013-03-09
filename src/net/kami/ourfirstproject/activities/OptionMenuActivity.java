@@ -1,8 +1,6 @@
 package net.kami.ourfirstproject.activities;
 
 import net.kami.ourfirstproject.R;
-import net.kami.ourfirstproject.R.id;
-import net.kami.ourfirstproject.R.menu;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;

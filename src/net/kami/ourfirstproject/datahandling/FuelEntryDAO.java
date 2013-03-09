@@ -33,6 +33,8 @@ public class FuelEntryDAO {
 		return instance;
 	}
 
+	// minDate: Tagesdatum minus ein Jahr
+	// maxDate: Tagesdatum
 	public List<FuelEntry> getEntryForListView(Context context) {
 		List<FuelEntry> fuelEntries = new ArrayList<FuelEntry>();
 		DBHelper dbh = new DBHelper(context);
@@ -73,7 +75,17 @@ public class FuelEntryDAO {
 		return fuelEntries;
 	}
 
-	public void deleteSelectedEntries(List<FuelEntry> fuelEntryList) {
+	public void deleteSelectedEntries(List<FuelEntry> fuelEntryList,
+			Context context) {
+		for (FuelEntry fe : fuelEntryList) {
+			String date = fe.getDate().toString();
+			String kilometer = Double.toString(fe.getKilometers());
+			String liter = Double.toString(fe.getLiters());
+			String usage = Double.toString(fe.getUsage());
+			DBHelper dbh = new DBHelper(context);
+			dbh.delete(date, kilometer, liter, usage);
+
+		}
 
 	}
 

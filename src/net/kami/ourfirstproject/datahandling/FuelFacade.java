@@ -1,7 +1,6 @@
 package net.kami.ourfirstproject.datahandling;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -25,9 +24,8 @@ public class FuelFacade {
 	public static double calculateAverageUsage(Context context) {
 		// vorhergehende Verbräuche werden aus der DB abgerufen und in einer
 		// ArrayList gespeichert
-		List<Double> usageList = new ArrayList<Double>();
-		DBHelper dbh = new DBHelper(context);
-		usageList = dbh.getUsageList();
+		List<FuelEntry> usageList = FuelEntryDAO.getInstance()
+				.getEntryForListView(context);
 		double averageUsage = 0.00;
 		double usageSum = 0.00;
 		double averageUsageDouble = 0.00;
@@ -40,8 +38,8 @@ public class FuelFacade {
 
 			// iterieren durch die ArrayList und Aufsummieren der
 			// Verbrauchsdaten
-			for (double usageEntry : usageList) {
-				usageSum = usageSum + usageEntry;
+			for (FuelEntry fe : usageList) {
+				usageSum = usageSum + fe.getUsage();
 			}
 
 			// Berechnen des Durchschnittverbrauchs, Runden auf zwei

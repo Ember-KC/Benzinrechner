@@ -1,5 +1,6 @@
 package net.kami.ourfirstproject.activities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.kami.ourfirstproject.R;
@@ -7,7 +8,7 @@ import net.kami.ourfirstproject.datahandling.DBHelper;
 import net.kami.ourfirstproject.datahandling.FuelEntry;
 import net.kami.ourfirstproject.datahandling.FuelEntryDAO;
 import net.kami.ourfirstproject.datahandling.UsageListArrayAdapter;
-import net.kami.ourfirstproject.datahandling.UsageListCursorAdapter;
+import net.kami.ourfirstproject.export.UsageListExporter;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,11 +31,9 @@ public class UsageList extends ListActivity {
 	private DBHelper dbh;
 	// wird für die Listenansicht benötigt
 	private Cursor dbCursor;
-	// bildet den Cursor auf die ListView ab
-	private UsageListCursorAdapter listAdapter;
 
-	// TODO: Liste zeigt falsche bzw. doppelte Werte an, außerdem stürzt App
-	// beim Löschen von Werten ab
+	// bildet den Cursor auf die ListView ab
+	private ArrayAdapter<FuelEntry> listAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,8 @@ public class UsageList extends ListActivity {
 		List<FuelEntry> fuelEntries = FuelEntryDAO.getInstance()
 				.getEntryForListView(this);
 
-		ArrayAdapter<FuelEntry> listAdapter = new UsageListArrayAdapter(this,
-				R.layout.list_view, fuelEntries);
+		listAdapter = new UsageListArrayAdapter(this, R.layout.list_view,
+				fuelEntries);
 
 		ListView meineListView = (ListView) findViewById(android.R.id.list);
 		meineListView.setAdapter(listAdapter);
@@ -96,8 +96,12 @@ public class UsageList extends ListActivity {
 		alertDialog.setPositiveButton(R.string.button_confirmAction,
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-
-						dbh.delete(info.id);
+						int position = (int) info.id;
+						FuelEntry fe = listAdapter.getItem(position);
+						List<FuelEntry> fuelEntries = new ArrayList<FuelEntry>();
+						fuelEntries.add(fe);
+						FuelEntryDAO.getInstance().deleteSelectedEntries(
+								fuelEntries, UsageList.this);
 						updateList();
 					}
 				});
@@ -117,6 +121,29 @@ public class UsageList extends ListActivity {
 
 	private void updateList() {
 		// zunächst Cursor, dann Liste aktualisieren
+		listAdapter.clear();
+		List<FuelEntry> fuelEntries = FuelEntryDAO.getInstance()
+				.getEntryForListView(this);
+		listAdapter.addAll(fuelEntries);
 		listAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.usage_list_option_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_exportXML:
+			UsageListExporter.exportUsageList(this);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 }

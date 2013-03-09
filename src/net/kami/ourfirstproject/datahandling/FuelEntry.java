@@ -1,9 +1,16 @@
 package net.kami.ourfirstproject.datahandling;
 
+import org.simpleframework.xml.Element;
+
+@Element
 public class FuelEntry {
+	@Element
 	private double liters;
+	@Element
 	private double kilometers;
+	@Element
 	private String date;
+	@Element
 	private double usage;
 
 	public FuelEntry(double liters, double kilometers, String date, double usage) {
