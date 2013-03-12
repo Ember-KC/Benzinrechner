@@ -34,6 +34,7 @@ public class UsageList extends ListActivity {
 
 	// bildet den Cursor auf die ListView ab
 	private ArrayAdapter<FuelEntry> listAdapter;
+	private List<FuelEntry> fuelEntries;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +43,7 @@ public class UsageList extends ListActivity {
 		// Tippen und Halten öffnet Menü
 		registerForContextMenu(getListView());
 
-		List<FuelEntry> fuelEntries = FuelEntryDAO.getInstance()
-				.getEntryForListView(this);
+		fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(this);
 
 		listAdapter = new UsageListArrayAdapter(this, R.layout.list_view,
 				fuelEntries);
@@ -135,6 +135,27 @@ public class UsageList extends ListActivity {
 		inflater.inflate(R.menu.usage_list_option_menu, menu);
 		return true;
 	}
+
+	// menu entry to export list as xml is deactivated if usage list is empty
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		if (fuelEntries.size() <= 0)
+			menu.getItem(0).setEnabled(false);
+		return true;
+	}
+
+	// TODO: XML-Import implementieren
+	// TODO: mehrere Einträge auf einmal löschen können (neue Activity).
+	// Dazu muss zunächst das Kontextmenü ergänzt werden um einen Menüeintrag,
+	// der die Activity USageListDeleteActivity aufruft. In dieser Activity muss
+	// dann
+	// eine ActionBar eingebunden werden, über die man den Löschvorgang für die
+	// gewählten
+	// Einträge anstoßen kann. Wenn keine Einträge markiert sind, muss der
+	// Button der ActionBar
+	// deaktiviert sein. Vor dem Löschen muss ein AlertDialog erscheinen, über
+	// den das Löschen
+	// bestätigt oder abgebrochen werden kann.
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

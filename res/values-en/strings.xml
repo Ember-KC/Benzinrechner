@@ -40,6 +40,8 @@
     <string name="delete_entry_question">Do you really want to delete this entry?</string>
     <string name="error_write_xml">Error writing XML file</string>
     <string name="list_exported">List exported to \u0020</string>
+    <string name="empty_list">List is empty. Export has been aborted.</string>
+    
     
     
      

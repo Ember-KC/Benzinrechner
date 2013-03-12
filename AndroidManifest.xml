@@ -46,7 +46,11 @@
         </activity>
          <activity 
             android:name="net.kami.ourfirstproject.activities.UsageList"
-            android:label="@string/title_usage_list" >            
+            android:label="@string/title_usage_list"     
+            android:parentActivityName="net.kami.ourfirstproject.activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.kami.ourfirstproject.MainActivity" />        
             
         </activity>
     </application>

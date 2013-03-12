@@ -40,6 +40,7 @@
     <string name="delete_entry_question">Möchten Sie diesen Eintrag wirklich löschen?</string>
     <string name="error_write_xml">Fehler beim Schreiben der XML-Datei</string>
     <string name="list_exported">Liste exportiert nach \u0020</string>
+    <string name="empty_list">Liste enthält keine Daten. Export wurde abgebrochen.</string>
     
     
     
