@@ -12,6 +12,7 @@
     <string name="menu_deleteDatabase">Datenbank zurücksetzen</string>
     <string name="menu_showUsageList">Verbrauchsliste anzeigen</string>
     <string name="menu_exportXML">Liste exportieren (XML)</string>
+    <string name="menu_deleteList">Einträge löschen</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">Ihr Verbrauch</string>
     <string name="button_calcNew">Neu berechnen</string>
@@ -41,6 +42,7 @@
     <string name="error_write_xml">Fehler beim Schreiben der XML-Datei</string>
     <string name="list_exported">Liste exportiert nach \u0020</string>
     <string name="empty_list">Liste enthält keine Daten. Export wurde abgebrochen.</string>
+    <string name="title_usage_delete_list">Einträge löschen</string>
     
     
     

@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -146,14 +147,12 @@ public class UsageList extends ListActivity {
 
 	// TODO: XML-Import implementieren
 	// TODO: mehrere Einträge auf einmal löschen können (neue Activity).
-	// Dazu muss zunächst das Kontextmenü ergänzt werden um einen Menüeintrag,
-	// der die Activity USageListDeleteActivity aufruft. In dieser Activity muss
-	// dann
-	// eine ActionBar eingebunden werden, über die man den Löschvorgang für die
-	// gewählten
-	// Einträge anstoßen kann. Wenn keine Einträge markiert sind, muss der
-	// Button der ActionBar
-	// deaktiviert sein. Vor dem Löschen muss ein AlertDialog erscheinen, über
+	// Nächster Schritt: In der UsageListDeleteActivity muss
+	// eine ActionBar angezeigt werden, wenn mindestens ein Eintrag markiert ist
+	// über die ActionBar soll man den Löschvorgang für die
+	// gewählten Einträge anstoßen können. Wenn keine Einträge markiert sind,
+	// soll die ActionBar nicht sichtbar sein. Vor dem Löschen muss ein
+	// AlertDialog erscheinen, über
 	// den das Löschen
 	// bestätigt oder abgebrochen werden kann.
 
@@ -162,6 +161,9 @@ public class UsageList extends ListActivity {
 		switch (item.getItemId()) {
 		case R.id.menu_exportXML:
 			UsageListExporter.exportUsageList(this);
+			return true;
+		case R.id.menu_deleteList:
+			startActivity(new Intent(this, UsageListDeleteActivity.class));
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

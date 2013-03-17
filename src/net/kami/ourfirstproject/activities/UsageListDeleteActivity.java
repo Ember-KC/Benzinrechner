@@ -28,7 +28,7 @@ public class UsageListDeleteActivity extends ListActivity {
 		listAdapter = new UsageListArrayAdapter(this,
 				R.layout.delete_list_view, fuelEntries);
 
-		ListView meineListView = (ListView) findViewById(R.id.delete_list);
+		ListView meineListView = (ListView) findViewById(android.R.id.list);
 		meineListView.setAdapter(listAdapter);
 	}
 

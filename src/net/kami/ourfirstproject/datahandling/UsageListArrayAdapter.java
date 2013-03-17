@@ -3,6 +3,7 @@ package net.kami.ourfirstproject.datahandling;
 import java.util.List;
 
 import net.kami.ourfirstproject.R;
+import net.kami.ourfirstproject.activities.UsageList;
 import net.kami.ourfirstproject.utils.DateUtil;
 import net.kami.ourfirstproject.utils.NumberUtil;
 import android.content.Context;
@@ -11,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckedTextView;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
@@ -42,9 +43,10 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 			Log.d(TAG, "Error when parsing date" + dateString);
 
 		}
+		Context adapterContext = this.getContext();
 		// falls der Adapter für das Layout list_view aufgerufen wird, wird
 		// folgendes ausgeführt
-		if (view.getId() == R.layout.list_view) {
+		if (adapterContext instanceof UsageList) {
 			rowView = inflater.inflate(R.layout.list_view, parent, false);
 			TextView textview1 = (TextView) rowView
 					.findViewById(R.id.litersText);
@@ -56,11 +58,12 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 			// folgendes ausgeführt
 			rowView = inflater
 					.inflate(R.layout.delete_list_view, parent, false);
-			CheckedTextView checkBox = (CheckedTextView) rowView
+			CheckBox checkBox = (CheckBox) rowView
 					.findViewById(R.id.deleteCheckbox);
 			TextView textview1 = (TextView) rowView
-					.findViewById(R.id.litersText);
-			TextView textview2 = (TextView) rowView.findViewById(R.id.dateText);
+					.findViewById(R.id.litersTextDeleteList);
+			TextView textview2 = (TextView) rowView
+					.findViewById(R.id.dateTextDeleteList);
 			textview1.setText(NumberUtil.formatDecimalNumber(liters, context));
 			textview2.setText(dateString);
 			checkBox.setChecked(false);

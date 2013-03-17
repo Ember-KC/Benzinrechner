@@ -12,6 +12,7 @@
     <string name="menu_deleteDatabase">Reset database</string>
     <string name="menu_showUsageList">Show usage list</string>
     <string name="menu_exportXML">Export list (XML)</string>
+     <string name="menu_deleteList">Delete entries</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">Fuel used</string>
     <string name="button_calcNew">New calculation</string>
@@ -41,6 +42,8 @@
     <string name="error_write_xml">Error writing XML file</string>
     <string name="list_exported">List exported to \u0020</string>
     <string name="empty_list">List is empty. Export has been aborted.</string>
+    <string name="title_usage_delete_list">Einträge löschen</string>
+    
     
     
     
