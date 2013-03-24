@@ -47,7 +47,7 @@ public class UsageList extends ListActivity {
 		fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(this);
 
 		listAdapter = new UsageListArrayAdapter(this, R.layout.list_view,
-				fuelEntries);
+				fuelEntries, this);
 
 		ListView meineListView = (ListView) findViewById(android.R.id.list);
 		meineListView.setAdapter(listAdapter);
@@ -155,6 +155,12 @@ public class UsageList extends ListActivity {
 	// AlertDialog erscheinen, über
 	// den das Löschen
 	// bestätigt oder abgebrochen werden kann.
+	//
+	// Aktueller Stand 24.3.: ActionBar wird momentan ausgeblendet, obwohl noch
+	// Einträge
+	// gecheckt sind, die darf natürlich nicht sein. Bei dem Aufruf von
+	// onDestroyActionMode()
+	// muss abgefragt werden, ob noch Elemente gecheckt sind
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

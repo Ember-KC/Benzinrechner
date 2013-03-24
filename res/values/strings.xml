@@ -43,6 +43,10 @@
     <string name="list_exported">Liste exportiert nach \u0020</string>
     <string name="empty_list">Liste enthält keine Daten. Export wurde abgebrochen.</string>
     <string name="title_usage_delete_list">Einträge löschen</string>
+    <string name="delete">Löschen</string>
+    <string name="cancel_short">Abbr.</string>
+    <string name="cancel">Abbrechen</string>
+    
     
     
     

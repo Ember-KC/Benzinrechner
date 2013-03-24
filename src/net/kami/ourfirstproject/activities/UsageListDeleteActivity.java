@@ -15,6 +15,9 @@ public class UsageListDeleteActivity extends ListActivity {
 
 	private ArrayAdapter<FuelEntry> listAdapter;
 	private List<FuelEntry> fuelEntries;
+	protected int selectedItem;
+
+	private static final String TAG = "UsageListDeleteActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +29,10 @@ public class UsageListDeleteActivity extends ListActivity {
 		fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(this);
 
 		listAdapter = new UsageListArrayAdapter(this,
-				R.layout.delete_list_view, fuelEntries);
+				R.layout.delete_list_view, fuelEntries, this);
 
 		ListView meineListView = (ListView) findViewById(android.R.id.list);
 		meineListView.setAdapter(listAdapter);
-	}
 
+	}
 }

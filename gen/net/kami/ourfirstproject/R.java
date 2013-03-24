@@ -26,6 +26,8 @@ public final class R {
         public static final int dateTextDeleteList=0x7f080014;
         public static final int deleteCheckbox=0x7f080012;
         public static final int deleteUsageList=0x7f080011;
+        public static final int delete_list_cancel=0x7f080020;
+        public static final int delete_list_confirm=0x7f080021;
         public static final int edit_date=0x7f08000f;
         public static final int edit_kilometers=0x7f08000c;
         public static final int edit_liters=0x7f08000e;
@@ -34,9 +36,9 @@ public final class R {
         public static final int litersText=0x7f080016;
         public static final int litersTextDeleteList=0x7f080013;
         public static final int menu_deleteDatabase=0x7f08001f;
-        public static final int menu_deleteList=0x7f080022;
-        public static final int menu_delete_entry=0x7f080020;
-        public static final int menu_exportXML=0x7f080021;
+        public static final int menu_deleteList=0x7f080024;
+        public static final int menu_delete_entry=0x7f080022;
+        public static final int menu_exportXML=0x7f080023;
         public static final int menu_settings=0x7f08001d;
         public static final int menu_showUsageList=0x7f08001e;
         public static final int oldUsageText=0x7f080004;
@@ -64,8 +66,9 @@ public final class R {
         public static final int activity_blz_web_service=0x7f070000;
         public static final int activity_display_message=0x7f070001;
         public static final int activity_main=0x7f070002;
-        public static final int usage_list_contextmenu=0x7f070003;
-        public static final int usage_list_option_menu=0x7f070004;
+        public static final int delete_list_context_menu=0x7f070003;
+        public static final int usage_list_contextmenu=0x7f070004;
+        public static final int usage_list_option_menu=0x7f070005;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
@@ -75,11 +78,14 @@ public final class R {
         public static final int button_calcNew=0x7f05000e;
         public static final int button_calculate=0x7f050006;
         public static final int button_confirmAction=0x7f050014;
+        public static final int cancel=0x7f05002c;
+        public static final int cancel_short=0x7f05002b;
         public static final int close=0x7f05001a;
         public static final int confirm_delete=0x7f050024;
         public static final int contextmenu_title=0x7f050023;
         public static final int current_usage_text=0x7f05001e;
         public static final int database_reset=0x7f050017;
+        public static final int delete=0x7f05002a;
         public static final int delete_entry_question=0x7f050025;
         public static final int edit_kilometers=0x7f050002;
         public static final int edit_liters=0x7f050004;
@@ -101,8 +107,8 @@ public final class R {
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f05002b;
-        public static final int pref_title_display_name=0x7f05002c;
+        public static final int pref_header_general=0x7f05002e;
+        public static final int pref_title_display_name=0x7f05002f;
         public static final int reset_database_text=0x7f050016;
         public static final int save_usage=0x7f05000f;
         public static final int saved=0x7f050011;
@@ -111,7 +117,7 @@ public final class R {
         public static final int string_liters=0x7f05001c;
         public static final int title_activity_display_message=0x7f05000d;
         public static final int title_activity_main=0x7f05000c;
-        public static final int title_activity_settings=0x7f05002a;
+        public static final int title_activity_settings=0x7f05002d;
         public static final int title_reset_database=0x7f050015;
         public static final int title_usage_delete_list=0x7f050029;
         public static final int title_usage_list=0x7f05001b;
