@@ -163,6 +163,8 @@ public class UsageList extends ListActivity {
 	// best‰tigt oder abgebrochen werden kann.
 	//
 	// Aktueller Stand 31.03.:
+	// Der Haken in der Action Bar muss ausgeblendet bzw. mit sinnvoller
+	// Funktionalit‰t versehen werden
 	// Auﬂerdem ist eine Checkbox zuviel in der Liste, die muss weg :)
 
 	@Override
