@@ -86,6 +86,7 @@ public final class R {
         public static final int current_usage_text=0x7f05001e;
         public static final int database_reset=0x7f050017;
         public static final int delete=0x7f05002a;
+        public static final int delete_entries_notification=0x7f05002d;
         public static final int delete_entry_question=0x7f050025;
         public static final int edit_kilometers=0x7f050002;
         public static final int edit_liters=0x7f050004;
@@ -107,8 +108,8 @@ public final class R {
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f05002e;
-        public static final int pref_title_display_name=0x7f05002f;
+        public static final int pref_header_general=0x7f05002f;
+        public static final int pref_title_display_name=0x7f050030;
         public static final int reset_database_text=0x7f050016;
         public static final int save_usage=0x7f05000f;
         public static final int saved=0x7f050011;
@@ -117,7 +118,7 @@ public final class R {
         public static final int string_liters=0x7f05001c;
         public static final int title_activity_display_message=0x7f05000d;
         public static final int title_activity_main=0x7f05000c;
-        public static final int title_activity_settings=0x7f05002d;
+        public static final int title_activity_settings=0x7f05002e;
         public static final int title_reset_database=0x7f050015;
         public static final int title_usage_delete_list=0x7f050029;
         public static final int title_usage_list=0x7f05001b;

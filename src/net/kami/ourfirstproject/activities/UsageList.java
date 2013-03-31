@@ -54,6 +54,12 @@ public class UsageList extends ListActivity {
 	}
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+		updateList();
+	}
+
+	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 	}
@@ -156,11 +162,8 @@ public class UsageList extends ListActivity {
 	// den das Löschen
 	// bestätigt oder abgebrochen werden kann.
 	//
-	// Aktueller Stand 24.3.: ActionBar wird momentan ausgeblendet, obwohl noch
-	// Einträge
-	// gecheckt sind, die darf natürlich nicht sein. Bei dem Aufruf von
-	// onDestroyActionMode()
-	// muss abgefragt werden, ob noch Elemente gecheckt sind
+	// Aktueller Stand 31.03.:
+	// Außerdem ist eine Checkbox zuviel in der Liste, die muss weg :)
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

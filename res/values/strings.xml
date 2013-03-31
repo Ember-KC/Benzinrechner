@@ -46,6 +46,7 @@
     <string name="delete">Löschen</string>
     <string name="cancel_short">Abbr.</string>
     <string name="cancel">Abbrechen</string>
+    <string name="delete_entries_notification">Alle gewählten Einträge werden gelöscht.</string>
     
     
     

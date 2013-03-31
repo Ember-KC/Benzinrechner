@@ -1,6 +1,7 @@
 package net.kami.ourfirstproject.datahandling;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class FuelEntryDAO {
 		return fuelEntries;
 	}
 
-	public void deleteSelectedEntries(List<FuelEntry> fuelEntryList,
+	public void deleteSelectedEntries(Collection<FuelEntry> fuelEntryList,
 			Context context) {
 		for (FuelEntry fe : fuelEntryList) {
 			String date = fe.getDate().toString();
