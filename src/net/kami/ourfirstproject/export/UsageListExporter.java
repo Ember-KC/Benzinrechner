@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import net.kami.ourfirstproject.R;
 import net.kami.ourfirstproject.datahandling.FuelEntry;
@@ -19,25 +20,26 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-public class UsageListExporter {
+public abstract class UsageListExporter {
 
 	private static final String TAG = UsageListExporter.class.getSimpleName();
 
-	public static void exportUsageList(Context context) {
+	public static void exportUsageList(final Context context) {
 
 		Serializer serializer = new Persister();
 		FuelEntryList fel = new FuelEntryList();
-		fel.fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(
-				context);
-		for (FuelEntry fe : fel.fuelEntries) {
+		fel.setFuelEntries(FuelEntryDAO.getInstance().getEntryForListView(
+				context));
+		for (FuelEntry fe : fel.getFuelEntries()) {
 			try {
 				fe.setDate(DateUtil.parseDateForLocale(fe.getDate(), context));
 			} catch (ParseException e) {
 				Log.e(TAG, "Date could not be parsed for locale.");
 			}
 		}
-		if (fel.fuelEntries.size() > 0) {
-			DateFormat formatterLocale = new SimpleDateFormat("yyyyMMdd-HHmmss");
+		if (fel.getFuelEntries().size() > 0) {
+			DateFormat formatterLocale = new SimpleDateFormat(
+					"yyyyMMdd-HHmmss", Locale.getDefault());
 			String dateString = formatterLocale.format(new Date());
 			File file = new File("sdcard/download/fuellist-" + dateString
 					+ ".xml");
@@ -50,9 +52,7 @@ public class UsageListExporter {
 			} catch (Exception e) {
 				Log.e(TAG, "Error writing XML file");
 			}
-		}
-
-		else {
+		} else {
 			Toast.makeText(context, context.getString(R.string.empty_list),
 					Toast.LENGTH_SHORT).show();
 		}

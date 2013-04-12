@@ -20,8 +20,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -41,7 +39,7 @@ public class MainActivity extends OptionMenuActivity {
 	private DatePicker editDate;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected final void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_main);
@@ -56,8 +54,8 @@ public class MainActivity extends OptionMenuActivity {
 		TextWatcher textwatcher = new TextWatcher() {
 
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
+			public void onTextChanged(final CharSequence s, final int start,
+					final int before, final int count) {
 
 				String kilometer = editKilometers.getText().toString();
 				String liter = editLiters.getText().toString();
@@ -68,13 +66,13 @@ public class MainActivity extends OptionMenuActivity {
 			}
 
 			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
+			public void beforeTextChanged(final CharSequence s,
+					final int start, final int count, final int after) {
 
 			}
 
 			@Override
-			public void afterTextChanged(Editable s) {
+			public void afterTextChanged(final Editable s) {
 
 			}
 		};
@@ -84,35 +82,18 @@ public class MainActivity extends OptionMenuActivity {
 
 	}
 
-	public String getDate(DatePicker editDate) {
-		String day = DateUtil.convert(editDate.getDayOfMonth(), 2);
+	public final String getDate(final DatePicker datePicker) {
+		String day = DateUtil.convert(datePicker.getDayOfMonth(), 2);
 		// beim Monat muss 1 hinzugefügt werden, da Januar der Monat 0 ist
-		String month = DateUtil.convert(editDate.getMonth() + 1, 2);
-		String year = String.valueOf(editDate.getYear());
+		String month = DateUtil.convert(datePicker.getMonth() + 1, 2);
+		String year = String.valueOf(datePicker.getYear());
 		String dateString = year + "-" + month + "-" + day;
 		return dateString;
 
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		super.onOptionsItemSelected(item);
-		return true;
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-	}
-
-	@Override
-	protected void onRestart() {
+	protected final void onRestart() {
 		super.onRestart();
 		// Set the text view as the activity layout
 		setContentView(R.layout.activity_main);
@@ -126,8 +107,8 @@ public class MainActivity extends OptionMenuActivity {
 		TextWatcher textwatcher = new TextWatcher() {
 
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
+			public void onTextChanged(final CharSequence s, final int start,
+					final int before, final int count) {
 
 				String kilometer = editKilometers.getText().toString();
 				String liter = editLiters.getText().toString();
@@ -138,13 +119,13 @@ public class MainActivity extends OptionMenuActivity {
 			}
 
 			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
+			public void beforeTextChanged(final CharSequence s,
+					final int start, final int count, final int after) {
 
 			}
 
 			@Override
-			public void afterTextChanged(Editable s) {
+			public void afterTextChanged(final Editable s) {
 
 			}
 		};
@@ -154,12 +135,12 @@ public class MainActivity extends OptionMenuActivity {
 		// Activity being restarted from stopped state
 	}
 
-	public void getFuelValues(View view) {
+	public final void getFuelValues(final View view) {
 		Intent intent = new Intent(this, DisplayMessageActivity.class);
 		// die Navigationselemente werden abgerufen und Variablen zugewiesen
-		EditText editKilometers = (EditText) findViewById(R.id.edit_kilometers);
-		EditText editLiters = (EditText) findViewById(R.id.edit_liters);
-		DatePicker editDate = (DatePicker) findViewById(R.id.edit_date);
+		editKilometers = (EditText) findViewById(R.id.edit_kilometers);
+		editLiters = (EditText) findViewById(R.id.edit_liters);
+		editDate = (DatePicker) findViewById(R.id.edit_date);
 
 		// die eingegebenen Werte für die Navigationselemente werden abgerufen
 		// und Variablen zugewiesen
@@ -199,9 +180,7 @@ public class MainActivity extends OptionMenuActivity {
 				intent.putExtra(EXTRA_OLDUSAGE, oldUsage);
 				intent.putExtra(EXTRA_MESSAGE, usageRoundedDouble);
 				startActivity(intent);
-			}
-
-			else {
+			} else {
 				showAlertDialog(this);
 			}
 		}
@@ -221,7 +200,7 @@ public class MainActivity extends OptionMenuActivity {
 	// TODO: Speicherung in Datei entfernen und letzten Verbrauch aus DB lesen
 	// die Methode sageUsage(BigDecimal usage) speichert den aktuellen Verbrauch
 	// in einer Preferences-Date
-	public void saveUsage(BigDecimal usage) {
+	public final void saveUsage(final BigDecimal usage) {
 		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putString(getString(R.string.save_usage), usage.toString());
@@ -233,15 +212,15 @@ public class MainActivity extends OptionMenuActivity {
 	// TODO: Integrationtest ergänzen, der prüft ob die richtige Menge an
 	// Einträgen in der DB gespeichert werden & ggf. Create-Timestamp als ID
 	// hinzufügen
-	public void saveUsageInDb(String date, double kilometer, double liter,
-			double usage) {
+	public final void saveUsageInDb(final String date, final double kilometer,
+			final double liter, final double usage) {
 		List<FuelEntry> fuelEntryList = new ArrayList<FuelEntry>();
 		fuelEntryList.add(new FuelEntry(liter, kilometer, date, usage));
 		FuelEntryDAO.getInstance().saveEntry(fuelEntryList, this);
 		Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
 	}
 
-	private void showAlertDialog(Context context) {
+	private void showAlertDialog(final Context context) {
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
 		// Setting Dialog Title
@@ -253,7 +232,8 @@ public class MainActivity extends OptionMenuActivity {
 		alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,
 				this.getString(R.string.button_confirmAction),
 				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
+					public void onClick(final DialogInterface dialog,
+							final int which) {
 
 					}
 				});

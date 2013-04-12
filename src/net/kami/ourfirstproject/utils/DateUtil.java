@@ -10,7 +10,7 @@ import java.util.Locale;
 import net.kami.ourfirstproject.R;
 import android.content.Context;
 
-public class DateUtil {
+public abstract class DateUtil {
 
 	/**
 	 * Diese Methode wandelt ein übergebenes Datumsobjekt in einen String um
@@ -19,7 +19,7 @@ public class DateUtil {
 	 *            beliebiges Datumsobjekt
 	 * @return Datum als String im Format yyyy-MM-dd
 	 */
-	public static String getDateAsString(Date date) {
+	public static String getDateAsString(final Date date) {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 		String dateFormatted = formatter.format(date);
 		return dateFormatted;
@@ -35,7 +35,8 @@ public class DateUtil {
 	 *            Anzahl der Jahre, die addiert oder substrahiert werden sollen
 	 * @return Datumsobjekt
 	 */
-	public static Date calculateDateByYear(Date baseDate, int deltaYears) {
+	public static Date calculateDateByYear(final Date baseDate,
+			final int deltaYears) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(baseDate);
 		calendar.add(Calendar.YEAR, deltaYears);
@@ -43,19 +44,22 @@ public class DateUtil {
 
 	}
 
-	public static String parseDateForLocale(String dateString, Context context)
-			throws ParseException {
-		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	public static String parseDateForLocale(final String dateString,
+			final Context context) throws ParseException {
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd",
+				Locale.getDefault());
 		DateFormat formatterLocale = new SimpleDateFormat(
-				context.getString(R.string.simple_date_format_pattern));
+				context.getString(R.string.simple_date_format_pattern),
+				Locale.getDefault());
 		Date date = formatter.parse(dateString);
 		return formatterLocale.format(date);
 	}
 
-	public static String convert(int number, int digit) {
+	public static String convert(final int number, final int digit) {
 		String buffer = String.valueOf(number);
-		while (buffer.length() != digit)
+		while (buffer.length() != digit) {
 			buffer = "0" + buffer;
+		}
 		return buffer;
 	}
 

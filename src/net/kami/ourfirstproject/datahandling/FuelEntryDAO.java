@@ -10,12 +10,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class FuelEntryDAO {
-	private DBHelper dbhelper;
+public final class FuelEntryDAO {
 
 	private static FuelEntryDAO instance = null;
-
-	private List<String> fuelEntryStrings = new ArrayList<String>();
 
 	/**
 	 * Default-Konstruktor, der nicht auﬂerhalb dieser Klasse aufgerufen werden
@@ -36,7 +33,7 @@ public class FuelEntryDAO {
 
 	// minDate: Tagesdatum minus ein Jahr
 	// maxDate: Tagesdatum
-	public List<FuelEntry> getEntryForListView(Context context) {
+	public List<FuelEntry> getEntryForListView(final Context context) {
 		List<FuelEntry> fuelEntries = new ArrayList<FuelEntry>();
 		DBHelper dbh = new DBHelper(context);
 		String selectQuery = "SELECT * FROM "
@@ -76,8 +73,8 @@ public class FuelEntryDAO {
 		return fuelEntries;
 	}
 
-	public void deleteSelectedEntries(Collection<FuelEntry> fuelEntryList,
-			Context context) {
+	public void deleteSelectedEntries(
+			final Collection<FuelEntry> fuelEntryList, final Context context) {
 		for (FuelEntry fe : fuelEntryList) {
 			String date = fe.getDate().toString();
 			String kilometer = Double.toString(fe.getKilometers());
@@ -90,7 +87,8 @@ public class FuelEntryDAO {
 
 	}
 
-	public void saveEntry(List<FuelEntry> fuelEntryList, Context context) {
+	public void saveEntry(final List<FuelEntry> fuelEntryList,
+			final Context context) {
 		for (FuelEntry fe : fuelEntryList) {
 			String date = fe.getDate().toString();
 			String kilometer = Double.toString(fe.getKilometers());

@@ -5,12 +5,15 @@ import java.util.List;
 
 import android.content.Context;
 
-public class FuelFacade {
+public abstract class FuelFacade {
+
+	private static final int CALC_BASE = 100;
 
 	// der Verbrauch wird ausgerechnet, auf zwei Nachkommastellen gerundet
 	// und in einen String zur Übergabe an die nächste Activity eingefügt
-	public static BigDecimal calculateFuel(double liters, double kilometers) {
-		double usage = (liters / kilometers) * 100;
+	public static BigDecimal calculateFuel(final double liters,
+			final double kilometers) {
+		double usage = (liters / kilometers) * CALC_BASE;
 		BigDecimal usageRounded = new BigDecimal(usage);
 		usageRounded = usageRounded.setScale(2, BigDecimal.ROUND_HALF_UP);
 		return usageRounded;
@@ -21,7 +24,7 @@ public class FuelFacade {
 	// die Methode calculateAverageUsage berechnet den Durchschnittsverbrauch
 	// aus den vorhergegangenen Tankvorgängen. Dabei werden die letzten 12
 	// Monate berücksichtigt.
-	public static double calculateAverageUsage(Context context) {
+	public static double calculateAverageUsage(final Context context) {
 		// vorhergehende Verbräuche werden aus der DB abgerufen und in einer
 		// ArrayList gespeichert
 		List<FuelEntry> usageList = FuelEntryDAO.getInstance()

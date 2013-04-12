@@ -15,12 +15,9 @@ public class UsageListDeleteActivity extends ListActivity {
 
 	private ArrayAdapter<FuelEntry> listAdapter;
 	private List<FuelEntry> fuelEntries;
-	protected int selectedItem;
-
-	private static final String TAG = "UsageListDeleteActivity";
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected final void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.delete_list_view);
 		// Tippen und Halten öffnet Menü

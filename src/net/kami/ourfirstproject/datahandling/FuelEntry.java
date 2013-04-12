@@ -13,44 +13,45 @@ public class FuelEntry {
 	@Element
 	private double usage;
 
-	public FuelEntry(double liters, double kilometers, String date, double usage) {
-		this.liters = liters;
-		this.kilometers = kilometers;
-		this.date = date;
-		this.usage = usage;
+	public FuelEntry(final double pLiters, final double pKilometers,
+			final String pDate, final double pUsage) {
+		this.liters = pLiters;
+		this.kilometers = pKilometers;
+		this.date = pDate;
+		this.usage = pUsage;
 
 	}
 
-	public double getLiters() {
+	public final double getLiters() {
 		return liters;
 	}
 
-	public void setLiters(double liters) {
-		this.liters = liters;
+	public final void setLiters(final double pLiters) {
+		this.liters = pLiters;
 	}
 
-	public double getKilometers() {
+	public final double getKilometers() {
 		return kilometers;
 	}
 
-	public void setKilometers(double kilometers) {
-		this.kilometers = kilometers;
+	public final void setKilometers(final double pKilometers) {
+		this.kilometers = pKilometers;
 	}
 
-	public String getDate() {
+	public final String getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public final void setDate(final String pDate) {
+		this.date = pDate;
 	}
 
-	public double getUsage() {
+	public final double getUsage() {
 		return usage;
 	}
 
-	public void setUsage(double usage) {
-		this.usage = usage;
+	public final void setUsage(final double pUsage) {
+		this.usage = pUsage;
 	}
 
 }

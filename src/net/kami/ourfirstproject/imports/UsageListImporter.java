@@ -1,8 +1,6 @@
 package net.kami.ourfirstproject.imports;
 
-public class UsageListImporter {
-
-	private static final String TAG = UsageListImporter.class.getSimpleName();
+public abstract class UsageListImporter {
 
 	public static void importUsageList() {
 

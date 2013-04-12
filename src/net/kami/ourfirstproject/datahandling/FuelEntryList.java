@@ -10,6 +10,14 @@ import org.simpleframework.xml.Root;
 public class FuelEntryList {
 
 	@ElementList
-	public List<FuelEntry> fuelEntries = new ArrayList<FuelEntry>();
+	private List<FuelEntry> fuelEntries = new ArrayList<FuelEntry>();
+
+	public final List<FuelEntry> getFuelEntries() {
+		return fuelEntries;
+	}
+
+	public final void setFuelEntries(final List<FuelEntry> pFuelEntries) {
+		this.fuelEntries = pFuelEntries;
+	}
 
 }

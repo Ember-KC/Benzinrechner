@@ -40,20 +40,21 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ getTableNameUsage() + ";";
 
 	// Constructor to simplify Business logic access to the repository
-	public DBHelper(Context context) {
+	public DBHelper(final Context context) {
 
 		super(context, DB_NAME, null, DB_VERSION);
 
 	}
 
 	@Override
-	public void onCreate(SQLiteDatabase db) {
+	public final void onCreate(final SQLiteDatabase db) {
 		db.execSQL(TABLE_USAGE_CREATE);
 
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	public final void onUpgrade(final SQLiteDatabase db, final int oldVersion,
+			final int newVersion) {
 		Log.w(TAG, "Upgrade der Datenbank von Version " + oldVersion + " zu "
 				+ newVersion + "; alle Daten werden gelöscht");
 		db.execSQL(TABLE_USAGE_DROP);
@@ -61,18 +62,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	}
 
-	public void onDelete(Context context) {
+	public final void onDelete(final Context context) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.execSQL(TABLE_USAGE_DELETE_ENTRIES);
 		db.close();
 
 	}
 
-	public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-	}
-
-	public void insert(String date, String kilometer, String liter, String usage) {
+	public final void insert(final String date, final String kilometer,
+			final String liter, final String usage) {
 		long rowId = -1;
 		try {
 			SQLiteDatabase db = getWritableDatabase();
@@ -97,7 +95,8 @@ public class DBHelper extends SQLiteOpenHelper {
 		return TABLE_NAME_USAGE;
 	}
 
-	public void delete(String date, String kilometer, String liter, String usage) {
+	public final void delete(final String date, final String kilometer,
+			final String liter, final String usage) {
 		// ggf. Datenbank öffnen
 		SQLiteDatabase db = getWritableDatabase();
 		int numDeleted = db.delete(TABLE_NAME_USAGE, COL_KILOMETER + " = ?"

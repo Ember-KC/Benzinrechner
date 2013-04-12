@@ -2,7 +2,7 @@ package net.kami.ourfirstproject.datahandling;
 
 import java.util.HashSet;
 
-public class FuelEntryDeleteSet extends HashSet<FuelEntry> {
+public final class FuelEntryDeleteSet extends HashSet<FuelEntry> {
 
 	/**
 	 * 

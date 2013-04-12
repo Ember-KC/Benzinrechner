@@ -4,20 +4,17 @@ import net.kami.ourfirstproject.R;
 import net.kami.ourfirstproject.utils.NumberUtil;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends OptionMenuActivity {
-	public final static String EXTRA_KILOMETERS = "net.kami.ourfirstproject.KILOMETERS_MESSAGE";
-	public final static String EXTRA_LITERS = "net.kami.ourfirstproject.LITERS_MESSAGE";
-	int defaultUsage = 0;
+	public static final String EXTRA_KILOMETERS = "net.kami.ourfirstproject.KILOMETERS_MESSAGE";
+	public static final String EXTRA_LITERS = "net.kami.ourfirstproject.LITERS_MESSAGE";
+	private int defaultUsage = 0;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public final void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		// Get the message from the intent
@@ -52,30 +49,18 @@ public class DisplayMessageActivity extends OptionMenuActivity {
 					.getString(R.string.average_usage_not_displayed));
 
 		}
-		Button calculateNew = (Button) findViewById(R.id.button_calcNew);
+		// Button calculateNew = (Button) findViewById(R.id.button_calcNew);
 		ImageView iv = (ImageView) findViewById(R.id.smiley);
 		this.findSmiley(usageRounded, averageUsage, iv);
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		super.onOptionsItemSelected(item);
-		return true;
-	}
-
-	public void calculateNew(View view) {
+	public final void calculateNew(final View view) {
 		finish();
 	}
 
-	public void findSmiley(double usageRounded, double averageUsage,
-			ImageView iv) {
+	public final void findSmiley(final double usageRounded,
+			final double averageUsage, final ImageView iv) {
 		if (averageUsage > 0) {
 
 			if (usageRounded <= averageUsage) {

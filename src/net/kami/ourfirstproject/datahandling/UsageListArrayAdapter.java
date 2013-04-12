@@ -35,15 +35,18 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 
 	private static final String TAG = "UsageListArrayAdapter";
 
-	public UsageListArrayAdapter(Context context, int textViewResourceId,
-			List<FuelEntry> fuelEntries, Activity activity) {
-		super(context, textViewResourceId, fuelEntries);
-		this.context = context;
-		this.fuelEntries = fuelEntries;
-		this.activity = activity;
+	public UsageListArrayAdapter(final Context pContext,
+			final int textViewResourceId, final List<FuelEntry> pFuelEntries,
+			final Activity pActivity) {
+		super(pContext, textViewResourceId, pFuelEntries);
+		this.context = pContext;
+		this.fuelEntries = pFuelEntries;
+		this.activity = pActivity;
 	}
 
-	public View getView(int position, View view, ViewGroup parent) {
+	@Override
+	public final View getView(final int position, final View view,
+			final ViewGroup parent) {
 		// fuelEntrySet is implemented as Singleton as otherwise a new set would
 		// be opened for each entry
 		final Set<FuelEntry> fuelEntrySet = FuelEntryDeleteSet.getInstance();
@@ -89,8 +92,9 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 				checkBox.setChecked(false);
 				checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
+					public void onCheckedChanged(
+							final CompoundButton buttonView,
+							final boolean isChecked) {
 
 						if (isChecked) {
 							// if an entry is checked, it is added to the list
@@ -98,7 +102,7 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 							// entries to be deleted
 							fuelEntrySet.add(fe);
 
-							if (mActionMode == null)
+							if (mActionMode == null) {
 								mActionMode = activity
 										.startActionMode(new ActionMode.Callback() {
 
@@ -108,7 +112,8 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 											// called
 											@Override
 											public boolean onCreateActionMode(
-													ActionMode mode, Menu menu) {
+													final ActionMode mode,
+													final Menu menu) {
 												// Inflate a menu resource
 												// providing
 												// context
@@ -133,7 +138,8 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 											// invalidated.
 											@Override
 											public boolean onPrepareActionMode(
-													ActionMode mode, Menu menu) {
+													final ActionMode mode,
+													final Menu menu) {
 												return false; // Return false if
 																// nothing
 																// is done
@@ -145,8 +151,8 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 											// item
 											@Override
 											public boolean onActionItemClicked(
-													ActionMode mode,
-													MenuItem item) {
+													final ActionMode mode,
+													final MenuItem item) {
 												switch (item.getItemId()) {
 												case R.id.delete_list_cancel:
 													mode.finish();
@@ -166,25 +172,29 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 											// mode
 											@Override
 											public void onDestroyActionMode(
-													ActionMode mode) {
+													final ActionMode mode) {
 												mActionMode = null;
 											}
 										});
-						} else {
-							// checked entries that are unchecked again, are
-							// removed
-							// from the list of entries to be deleted
-							fuelEntrySet.remove(fe);
-							Log.d(TAG, "Entry " + fe.toString()
-									+ " removed from selection.");
-							Log.d(TAG, "Set-Name " + fuelEntrySet.toString());
-							Log.d(TAG, "Set-Größe " + fuelEntrySet.size());
-							// If the list of entries to be deleted is empty,
-							// the
-							// action bar can be closed
-							if (mActionMode != null && fuelEntrySet.size() < 1) {
-								mActionMode.finish();
-								mActionMode = null;
+							} else {
+								// checked entries that are unchecked again, are
+								// removed
+								// from the list of entries to be deleted
+								fuelEntrySet.remove(fe);
+								Log.d(TAG, "Entry " + fe.toString()
+										+ " removed from selection.");
+								Log.d(TAG,
+										"Set-Name " + fuelEntrySet.toString());
+								Log.d(TAG, "Set-Größe " + fuelEntrySet.size());
+								// If the list of entries to be deleted is
+								// empty,
+								// the
+								// action bar can be closed
+								if (mActionMode != null
+										&& fuelEntrySet.size() < 1) {
+									mActionMode.finish();
+									mActionMode = null;
+								}
 							}
 						}
 					}
@@ -196,7 +206,7 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 
 	}
 
-	private void showAlertDialog(final Context context, final ActionMode mode,
+	private void showAlertDialog(final Context pContext, final ActionMode mode,
 			final Set<FuelEntry> fuelEntrySet) {
 		AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
 
@@ -212,7 +222,8 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 					// if the confirm button is clicked, all entries in the set
 					// of entries to be deleted are passed to the DAO to be
 					// deleted
-					public void onClick(DialogInterface dialog, int which) {
+					public void onClick(final DialogInterface dialog,
+							final int which) {
 						FuelEntryDAO.getInstance().deleteSelectedEntries(
 								fuelEntrySet, context);
 						mode.finish();
@@ -223,7 +234,8 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 		// Setting Negative "NO" Button
 		alertDialog.setNegativeButton(R.string.button_abortAction,
 				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
+					public void onClick(final DialogInterface dialog,
+							final int which) {
 
 						dialog.cancel();
 					}

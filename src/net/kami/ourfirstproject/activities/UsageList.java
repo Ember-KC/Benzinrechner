@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.kami.ourfirstproject.R;
-import net.kami.ourfirstproject.datahandling.DBHelper;
 import net.kami.ourfirstproject.datahandling.FuelEntry;
 import net.kami.ourfirstproject.datahandling.FuelEntryDAO;
 import net.kami.ourfirstproject.datahandling.UsageListArrayAdapter;
@@ -14,7 +13,6 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -28,17 +26,12 @@ import android.widget.ListView;
 
 public class UsageList extends ListActivity {
 
-	// Schnittstelle zur Datenbank
-	private DBHelper dbh;
-	// wird für die Listenansicht benötigt
-	private Cursor dbCursor;
-
 	// bildet den Cursor auf die ListView ab
 	private ArrayAdapter<FuelEntry> listAdapter;
 	private List<FuelEntry> fuelEntries;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected final void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_view);
 		// Tippen und Halten öffnet Menü
@@ -54,19 +47,14 @@ public class UsageList extends ListActivity {
 	}
 
 	@Override
-	protected void onResume() {
+	protected final void onResume() {
 		super.onResume();
 		updateList();
 	}
 
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
-
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
+	public final void onCreateContextMenu(final ContextMenu menu, final View v,
+			final ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		// Kontextmenü entfalten
 		MenuInflater inflater = getMenuInflater();
@@ -75,7 +63,7 @@ public class UsageList extends ListActivity {
 	}
 
 	@Override
-	public boolean onContextItemSelected(MenuItem item) {
+	public final boolean onContextItemSelected(final MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		switch (item.getItemId()) {
@@ -89,7 +77,7 @@ public class UsageList extends ListActivity {
 		}
 	}
 
-	private void showAlertDialog(Context context,
+	private void showAlertDialog(final Context context,
 			final AdapterContextMenuInfo info) {
 		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
@@ -102,10 +90,11 @@ public class UsageList extends ListActivity {
 		// Setting Positive "Yes" Button
 		alertDialog.setPositiveButton(R.string.button_confirmAction,
 				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
+					public void onClick(final DialogInterface dialog,
+							final int which) {
 						int position = (int) info.id;
 						FuelEntry fe = listAdapter.getItem(position);
-						List<FuelEntry> fuelEntries = new ArrayList<FuelEntry>();
+						fuelEntries = new ArrayList<FuelEntry>();
 						fuelEntries.add(fe);
 						FuelEntryDAO.getInstance().deleteSelectedEntries(
 								fuelEntries, UsageList.this);
@@ -116,7 +105,8 @@ public class UsageList extends ListActivity {
 		// Setting Negative "NO" Button
 		alertDialog.setNegativeButton(R.string.button_abortAction,
 				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
+					public void onClick(final DialogInterface dialog,
+							final int which) {
 
 						dialog.cancel();
 					}
@@ -129,14 +119,13 @@ public class UsageList extends ListActivity {
 	private void updateList() {
 		// zunächst Cursor, dann Liste aktualisieren
 		listAdapter.clear();
-		List<FuelEntry> fuelEntries = FuelEntryDAO.getInstance()
-				.getEntryForListView(this);
+		fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(this);
 		listAdapter.addAll(fuelEntries);
 		listAdapter.notifyDataSetChanged();
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public final boolean onCreateOptionsMenu(final Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.usage_list_option_menu, menu);
@@ -144,23 +133,18 @@ public class UsageList extends ListActivity {
 	}
 
 	// menu entry to export list as xml is deactivated if usage list is empty
+	// TODO: menu entry to delete entries has to be deactivated if list is empty
 	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		if (fuelEntries.size() <= 0)
+	public final boolean onPrepareOptionsMenu(final Menu menu) {
+		if (fuelEntries.size() <= 0) {
 			menu.getItem(0).setEnabled(false);
+		}
 		return true;
+
 	}
 
 	// TODO: XML-Import implementieren
 	// TODO: mehrere Einträge auf einmal löschen können (neue Activity).
-	// Nächster Schritt: In der UsageListDeleteActivity muss
-	// eine ActionBar angezeigt werden, wenn mindestens ein Eintrag markiert ist
-	// über die ActionBar soll man den Löschvorgang für die
-	// gewählten Einträge anstoßen können. Wenn keine Einträge markiert sind,
-	// soll die ActionBar nicht sichtbar sein. Vor dem Löschen muss ein
-	// AlertDialog erscheinen, über
-	// den das Löschen
-	// bestätigt oder abgebrochen werden kann.
 	//
 	// Aktueller Stand 31.03.:
 	// Der Haken in der Action Bar muss ausgeblendet bzw. mit sinnvoller
@@ -168,7 +152,7 @@ public class UsageList extends ListActivity {
 	// Außerdem ist eine Checkbox zuviel in der Liste, die muss weg :)
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public final boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_exportXML:
 			UsageListExporter.exportUsageList(this);
