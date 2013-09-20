@@ -6,10 +6,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:id="@+id/chart"
     android:orientation="horizontal"
+    android:baselineAligned="false"
     tools:context=".ChartActivity" >
-
+    
+    <LinearLayout
+        android:id="@+id/chart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.81"
+        android:orientation="horizontal" />
    
 
 </LinearLayout>

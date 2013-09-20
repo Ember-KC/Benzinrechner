@@ -15,10 +15,11 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 
 public class ChartActivity extends Activity {
 
@@ -37,14 +38,12 @@ public class ChartActivity extends Activity {
 	private void createChart() {
 
 		// set some properties on the main renderer
-		multipleRenderer.setApplyBackgroundColor(true);
+		multipleRenderer.setApplyBackgroundColor(false);
 		multipleRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));
 		multipleRenderer.setAxisTitleTextSize(16);
-		multipleRenderer.setChartTitleTextSize(20);
 		multipleRenderer.setLabelsTextSize(15);
 		multipleRenderer.setLegendTextSize(15);
 		multipleRenderer.setMargins(new int[] { 20, 30, 15, 0 });
-		multipleRenderer.setZoomButtonsVisible(true);
 		multipleRenderer.setPointSize(5);
 
 		fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(this);
@@ -64,11 +63,16 @@ public class ChartActivity extends Activity {
 		renderer.setDisplayChartValuesDistance(10);
 
 		multipleRenderer.addSeriesRenderer(renderer);
-		mChartView = ChartFactory.getLineChartView(this, multipleSeries,
-				multipleRenderer);
-		Intent intent = ChartFactory.getLineChartIntent(getBaseContext(),
-				multipleSeries, multipleRenderer);
-		startActivity(intent);
+
+		if (mChartView == null) {
+			LinearLayout layout = (LinearLayout) findViewById(R.id.chart);
+			mChartView = ChartFactory.getLineChartView(this, multipleSeries,
+					multipleRenderer);
+			multipleRenderer.setSelectableBuffer(100);
+			layout.addView(mChartView, new LayoutParams(
+					LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		} else
+			mChartView.repaint();
 	}
 
 	@Override
