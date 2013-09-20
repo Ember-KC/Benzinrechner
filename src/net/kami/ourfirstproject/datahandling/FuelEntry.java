@@ -8,6 +8,7 @@ public class FuelEntry implements Comparable<FuelEntry> {
 	private double liters;
 	@Element
 	private double kilometers;
+	// TODO this has to be refactored
 	@Element
 	private String date;
 	@Element
