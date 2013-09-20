@@ -1,13 +1,16 @@
 package net.kami.ourfirstproject.activities;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import net.kami.ourfirstproject.R;
 import net.kami.ourfirstproject.datahandling.FuelEntry;
 import net.kami.ourfirstproject.datahandling.FuelEntryDAO;
 import net.kami.ourfirstproject.utils.DateUtil;
+import net.kami.ourfirstproject.utils.NumberUtil;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.webkit.WebView;
@@ -25,28 +28,38 @@ public class UsageReportActivity extends Activity {
 		webView = (WebView) findViewById(R.id.usageReportTable);
 
 		String customHtml = "<html><body><table border =1><tr><td> "
-				+ "Datum </td><td>Kilometer</td><td> Liter </td><td> Verbrauch </td>"
-				+ generateTable() + " </table></body></html>";
+				+ R.string.date + "</td><td>Kilometer</td><td>"
+				+ R.string.liters + "</td><td> " + R.string.usage
+				+ " </td></tr>" + generateTable(this)
+				+ " </table></body></html>";
 
 		webView.loadData(customHtml, "text/html", "UTF-8");
 
 	}
 
-	private String generateTable() {
+	private String generateTable(Context context) {
 		fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(this);
-		Collections.sort(fuelEntries);
+		Comparator<FuelEntry> descendingOrder = Collections.reverseOrder();
+		Collections.sort(fuelEntries, descendingOrder);
 		String date = null;
 		double liters = 0;
 		double kilometers = 0;
 		double usage = 0;
-		String usageHtml = null;
+		String usageHtml = "";
 		for (FuelEntry fe : fuelEntries) {
 			date = DateUtil.parseDateStringForLocale(fe.getDate(), this);
 			liters = fe.getLiters();
 			kilometers = fe.getKilometers();
 			usage = fe.getUsage();
-			usageHtml = usageHtml + "<tr><td>" + date + "</td><td>"
-					+ kilometers + "</td><td>" + liters + "</td><td>" + usage
+			usageHtml = usageHtml
+					+ "<tr><td>"
+					+ date
+					+ "</td><td align = \"right\">"
+					+ NumberUtil.formatDecimalNumberForLocale(kilometers,
+							context) + "</td><td align = \"right\">"
+					+ NumberUtil.formatDecimalNumberForLocale(liters, context)
+					+ "</td><td align = \"right\">"
+					+ NumberUtil.formatDecimalNumberForLocale(usage, context)
 					+ "</td></tr>";
 		}
 		return usageHtml;

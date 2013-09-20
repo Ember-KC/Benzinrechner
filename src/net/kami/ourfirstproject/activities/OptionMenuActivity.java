@@ -31,6 +31,9 @@ public class OptionMenuActivity extends Activity {
 			return true;
 		case R.id.menu_showUsageReport:
 			startActivity(new Intent(this, UsageReportActivity.class));
+			return true;
+		case R.id.menu_showUsageChart:
+			startActivity(new Intent(this, ChartActivity.class));
 		default:
 			return super.onOptionsItemSelected(item);
 		}

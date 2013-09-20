@@ -27,63 +27,67 @@ public final class R {
         public static final int smiley_schlecht=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f090027;
-        public static final int averageUsageText=0x7f090006;
-        public static final int button=0x7f090010;
-        public static final int button_abortDatabaseReset=0x7f09001d;
-        public static final int button_calcNew=0x7f09000a;
-        public static final int button_confirmDatabaseReset=0x7f09001c;
-        public static final int dateText=0x7f090018;
-        public static final int dateTextDeleteList=0x7f090015;
-        public static final int deleteCheckbox=0x7f090013;
-        public static final int deleteUsageList=0x7f090012;
-        public static final int delete_list_cancel=0x7f090022;
-        public static final int delete_list_confirm=0x7f090023;
-        public static final int edit_date=0x7f09000f;
-        public static final int edit_kilometers=0x7f09000c;
-        public static final int edit_liters=0x7f09000e;
-        public static final int label_kilometers=0x7f09000b;
-        public static final int label_liters=0x7f09000d;
-        public static final int litersText=0x7f090017;
-        public static final int litersTextDeleteList=0x7f090014;
-        public static final int menu_deleteDatabase=0x7f090020;
-        public static final int menu_deleteList=0x7f090026;
-        public static final int menu_delete_entry=0x7f090024;
-        public static final int menu_exportXML=0x7f090025;
-        public static final int menu_settings=0x7f09001e;
-        public static final int menu_showUsageList=0x7f09001f;
-        public static final int menu_showUsageReport=0x7f090021;
-        public static final int oldUsageText=0x7f090004;
-        public static final int resetButtonGroup=0x7f09001b;
-        public static final int resetTable=0x7f090019;
-        public static final int reset_database_text=0x7f09001a;
-        public static final int smiley=0x7f090008;
-        public static final int table2=0x7f090000;
-        public static final int tableRow1=0x7f090001;
-        public static final int tableRow2=0x7f090003;
-        public static final int tableRow3=0x7f090005;
-        public static final int tableRow4=0x7f090007;
-        public static final int tableRow5=0x7f090009;
-        public static final int usageList=0x7f090016;
-        public static final int usageReportTable=0x7f090011;
-        public static final int usageText=0x7f090002;
+        public static final int action_settings=0x7f090024;
+        public static final int averageUsageText=0x7f090007;
+        public static final int button=0x7f090011;
+        public static final int button_abortDatabaseReset=0x7f09001e;
+        public static final int button_calcNew=0x7f09000b;
+        public static final int button_confirmDatabaseReset=0x7f09001d;
+        public static final int chart=0x7f090000;
+        public static final int dateText=0x7f090019;
+        public static final int dateTextDeleteList=0x7f090016;
+        public static final int deleteCheckbox=0x7f090014;
+        public static final int deleteUsageList=0x7f090013;
+        public static final int delete_list_cancel=0x7f090025;
+        public static final int delete_list_confirm=0x7f090026;
+        public static final int edit_date=0x7f090010;
+        public static final int edit_kilometers=0x7f09000d;
+        public static final int edit_liters=0x7f09000f;
+        public static final int label_kilometers=0x7f09000c;
+        public static final int label_liters=0x7f09000e;
+        public static final int litersText=0x7f090018;
+        public static final int litersTextDeleteList=0x7f090015;
+        public static final int menu_deleteDatabase=0x7f090021;
+        public static final int menu_deleteList=0x7f090029;
+        public static final int menu_delete_entry=0x7f090027;
+        public static final int menu_exportXML=0x7f090028;
+        public static final int menu_settings=0x7f09001f;
+        public static final int menu_showUsageChart=0x7f090023;
+        public static final int menu_showUsageList=0x7f090020;
+        public static final int menu_showUsageReport=0x7f090022;
+        public static final int oldUsageText=0x7f090005;
+        public static final int resetButtonGroup=0x7f09001c;
+        public static final int resetTable=0x7f09001a;
+        public static final int reset_database_text=0x7f09001b;
+        public static final int smiley=0x7f090009;
+        public static final int table2=0x7f090001;
+        public static final int tableRow1=0x7f090002;
+        public static final int tableRow2=0x7f090004;
+        public static final int tableRow3=0x7f090006;
+        public static final int tableRow4=0x7f090008;
+        public static final int tableRow5=0x7f09000a;
+        public static final int usageList=0x7f090017;
+        public static final int usageReportTable=0x7f090012;
+        public static final int usageText=0x7f090003;
     }
     public static final class layout {
-        public static final int activity_display_message=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_usage_report=0x7f030002;
-        public static final int delete_list_view=0x7f030003;
-        public static final int list_view=0x7f030004;
-        public static final int reset_database_activity=0x7f030005;
+        public static final int activity_chart=0x7f030000;
+        public static final int activity_display_message=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_usage_report=0x7f030003;
+        public static final int delete_list_view=0x7f030004;
+        public static final int list_view=0x7f030005;
+        public static final int reset_database_activity=0x7f030006;
     }
     public static final class menu {
         public static final int activity_blz_web_service=0x7f080000;
         public static final int activity_display_message=0x7f080001;
         public static final int activity_main=0x7f080002;
-        public static final int delete_list_context_menu=0x7f080003;
-        public static final int usage_list_contextmenu=0x7f080004;
-        public static final int usage_list_option_menu=0x7f080005;
-        public static final int usage_report=0x7f080006;
+        public static final int chart=0x7f080003;
+        public static final int delete_list_context_menu=0x7f080004;
+        public static final int usage_list_contextmenu=0x7f080005;
+        public static final int usage_list_option_menu=0x7f080006;
+        public static final int usage_report=0x7f080007;
     }
     public static final class string {
         public static final int action_settings=0x7f06002f;
@@ -101,6 +105,7 @@ public final class R {
         public static final int contextmenu_title=0x7f060023;
         public static final int current_usage_text=0x7f06001e;
         public static final int database_reset=0x7f060017;
+        public static final int date=0x7f060031;
         public static final int delete=0x7f06002a;
         public static final int delete_entries_notification=0x7f06002d;
         public static final int delete_entry_question=0x7f060025;
@@ -109,15 +114,18 @@ public final class R {
         public static final int empty_list=0x7f060028;
         public static final int error_write_xml=0x7f060026;
         public static final int invalid_input_message=0x7f060019;
+        public static final int kilometers=0x7f060033;
         public static final int label_date=0x7f060005;
         public static final int label_kilometers=0x7f060001;
         public static final int label_liters=0x7f060003;
         public static final int list_exported=0x7f060027;
+        public static final int liters=0x7f060032;
         public static final int menu_deleteDatabase=0x7f060008;
         public static final int menu_deleteList=0x7f06000b;
         public static final int menu_delete_entry=0x7f060022;
         public static final int menu_exportXML=0x7f06000a;
         public static final int menu_settings=0x7f060007;
+        public static final int menu_showUsageChart=0x7f060036;
         public static final int menu_showUsageList=0x7f060009;
         public static final int menu_showUsageReport=0x7f060030;
         public static final int old_usage_default=0x7f060010;
@@ -125,21 +133,23 @@ public final class R {
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f060032;
-        public static final int pref_title_display_name=0x7f060033;
+        public static final int pref_header_general=0x7f060038;
+        public static final int pref_title_display_name=0x7f060039;
         public static final int reset_database_text=0x7f060016;
         public static final int save_usage=0x7f06000f;
         public static final int saved=0x7f060011;
         public static final int simple_date_format_pattern=0x7f060021;
         public static final int smiley=0x7f060012;
         public static final int string_liters=0x7f06001c;
+        public static final int title_activity_chart=0x7f060035;
         public static final int title_activity_display_message=0x7f06000d;
         public static final int title_activity_main=0x7f06000c;
-        public static final int title_activity_settings=0x7f060031;
+        public static final int title_activity_settings=0x7f060037;
         public static final int title_activity_usage_report=0x7f06002e;
         public static final int title_reset_database=0x7f060015;
         public static final int title_usage_delete_list=0x7f060029;
         public static final int title_usage_list=0x7f06001b;
+        public static final int usage=0x7f060034;
         public static final int warning_dialog_title=0x7f060018;
     }
     public static final class style {

@@ -64,6 +64,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.kami.ourfirstproject.MainActivity" />
         </activity>
+        <activity
+            android:name="net.kami.ourfirstproject.activities.ChartActivity"
+            android:label="@string/title_activity_chart" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.kami.ourfirstproject.MainActivity" />
+        </activity>
+         <activity android:name="org.achartengine.GraphicalActivity" />
     </application>
 
 </manifest>

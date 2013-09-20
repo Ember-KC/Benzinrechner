@@ -14,11 +14,19 @@ public abstract class NumberUtil {
 	// to it
 	public static StringBuffer formatDecimalNumber(final Double number,
 			final Context context) {
-		NumberFormat df = NumberFormat.getInstance(Locale.getDefault());
-		StringBuffer usageString = df.format(number, new StringBuffer(),
-				new FieldPosition(new ArrayList<Double>().indexOf(number)));
+		StringBuffer usageString = formatDecimalNumberForLocale(number, context);
 		usageString.append(" " + context.getString(R.string.string_liters));
 		return usageString;
+	}
+
+	public static StringBuffer formatDecimalNumberForLocale(
+			final Double number, final Context context) {
+		NumberFormat doubleFormat = NumberFormat.getInstance(Locale
+				.getDefault());
+		StringBuffer formattedDouble = doubleFormat.format(number,
+				new StringBuffer(),
+				new FieldPosition(new ArrayList<Double>().indexOf(number)));
+		return formattedDouble;
 	}
 
 }
