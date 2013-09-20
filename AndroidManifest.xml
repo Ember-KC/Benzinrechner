@@ -7,11 +7,9 @@
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="17" />
-    
-    <uses-permission 
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission
-        android:name="android.permission.READ_CONTACTS"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -39,28 +37,32 @@
             android:name="net.kami.ourfirstproject.activities.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
-        <activity 
+        <activity
             android:name="net.kami.ourfirstproject.activities.ResetDatabaseActivity"
-            android:label="@string/title_reset_database" >            
-            
+            android:label="@string/title_reset_database" >
         </activity>
-         <activity 
+        <activity
             android:name="net.kami.ourfirstproject.activities.UsageList"
-            android:label="@string/title_usage_list"     
+            android:label="@string/title_usage_list"
             android:parentActivityName="net.kami.ourfirstproject.activities.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.kami.ourfirstproject.MainActivity" />        
-            
+                android:value="net.kami.ourfirstproject.MainActivity" />
         </activity>
-     	<activity 
+        <activity
             android:name="net.kami.ourfirstproject.activities.UsageListDeleteActivity"
-            android:label="@string/title_usage_delete_list"     
+            android:label="@string/title_usage_delete_list"
             android:parentActivityName="net.kami.ourfirstproject.activities.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.kami.ourfirstproject.MainActivity" />        
-            
+                android:value="net.kami.ourfirstproject.MainActivity" />
+        </activity>
+        <activity
+            android:name="net.kami.ourfirstproject.activities.UsageReportActivity"
+            android:label="@string/title_activity_usage_report" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.kami.ourfirstproject.MainActivity" />
         </activity>
     </application>
 

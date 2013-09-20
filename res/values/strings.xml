@@ -35,7 +35,7 @@
     <string name="average_usage_not_displayed">Ihr Durchschnittsverbrauch kann noch nicht angezeigt werden, da erst ein Tankvorgang erfasst wurde.</string>
     <string name="old_usage_text">Verbrauch beim letzten Mal auf 100 Kilometern: \u0020 </string>
     <string name="simple_date_format_pattern">dd.MM.yyyy</string>
-    <string name= "menu_delete_entry">Eintrag löschen</string>
+    <string name="menu_delete_entry">Eintrag löschen</string>
     <string name="contextmenu_title">Mögliche Aktionen</string>
     <string name="confirm_delete">Löschen bestätigen</string>
     <string name="delete_entry_question">Möchten Sie diesen Eintrag wirklich löschen?</string>
@@ -47,11 +47,8 @@
     <string name="cancel_short">Abbr.</string>
     <string name="cancel">Abbrechen</string>
     <string name="delete_entries_notification">Alle gewählten Einträge werden gelöscht.</string>
-    
-    
-    
-    
-    
-    
+    <string name="title_activity_usage_report">Verbrauchsauswertung</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="menu_showUsageReport">Auswertung anzeigen</string>
 
 </resources>

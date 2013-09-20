@@ -29,6 +29,8 @@ public class OptionMenuActivity extends Activity {
 		case R.id.menu_showUsageList:
 			startActivity(new Intent(this, UsageList.class));
 			return true;
+		case R.id.menu_showUsageReport:
+			startActivity(new Intent(this, UsageReportActivity.class));
 		default:
 			return super.onOptionsItemSelected(item);
 		}

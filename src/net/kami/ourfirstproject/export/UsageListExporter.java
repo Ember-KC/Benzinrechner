@@ -2,7 +2,6 @@ package net.kami.ourfirstproject.export;
 
 import java.io.File;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -31,11 +30,7 @@ public abstract class UsageListExporter {
 		fel.setFuelEntries(FuelEntryDAO.getInstance().getEntryForListView(
 				context));
 		for (FuelEntry fe : fel.getFuelEntries()) {
-			try {
-				fe.setDate(DateUtil.parseDateForLocale(fe.getDate(), context));
-			} catch (ParseException e) {
-				Log.e(TAG, "Date could not be parsed for locale.");
-			}
+			fe.setDate(DateUtil.parseDateStringForLocale(fe.getDate(), context));
 		}
 		if (fel.getFuelEntries().size() > 0) {
 			DateFormat formatterLocale = new SimpleDateFormat(

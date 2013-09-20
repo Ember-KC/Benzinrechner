@@ -55,15 +55,9 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 		final FuelEntry fe = fuelEntries.get(position);
 		double liters = fe.getLiters();
 		String dateString = fe.getDate();
-		try {
-			dateString = DateUtil.parseDateForLocale(dateString, context);
-
-		} catch (java.text.ParseException p) {
-			Log.d(TAG, "Error when parsing date" + dateString);
-
-		}
-		// falls der Adapter für das Layout list_view aufgerufen wird, wird
-		// folgendes ausgeführt
+		dateString = DateUtil.parseDateStringForLocale(dateString, context);
+		// falls der Adapter fï¿½r das Layout list_view aufgerufen wird, wird
+		// folgendes ausgefï¿½hrt
 		if (fe != null) {
 			if (context instanceof UsageList) {
 				rowView = inflater.inflate(R.layout.list_view, parent, false);
@@ -75,9 +69,9 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 						context));
 				textview2.setText(dateString);
 			} else {
-				// falls der Adapter für ein anderes Layout aufgerufen wird,
+				// falls der Adapter fï¿½r ein anderes Layout aufgerufen wird,
 				// wird
-				// folgendes ausgeführt
+				// folgendes ausgefï¿½hrt
 				rowView = inflater.inflate(R.layout.delete_list_view, parent,
 						false);
 				CheckBox checkBox = (CheckBox) rowView
@@ -185,7 +179,7 @@ public class UsageListArrayAdapter extends ArrayAdapter<FuelEntry> {
 										+ " removed from selection.");
 								Log.d(TAG,
 										"Set-Name " + fuelEntrySet.toString());
-								Log.d(TAG, "Set-Größe " + fuelEntrySet.size());
+								Log.d(TAG, "Set-Grï¿½ï¿½e " + fuelEntrySet.size());
 								// If the list of entries to be deleted is
 								// empty,
 								// the

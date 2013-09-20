@@ -3,7 +3,7 @@ package net.kami.ourfirstproject.datahandling;
 import org.simpleframework.xml.Element;
 
 @Element
-public class FuelEntry {
+public class FuelEntry implements Comparable<FuelEntry> {
 	@Element
 	private double liters;
 	@Element
@@ -52,6 +52,11 @@ public class FuelEntry {
 
 	public final void setUsage(final double pUsage) {
 		this.usage = pUsage;
+	}
+
+	@Override
+	public int compareTo(FuelEntry another) {
+		return this.getDate().compareTo(another.getDate());
 	}
 
 }

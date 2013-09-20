@@ -11,10 +11,16 @@
         android:orderInCategory="200"
         android:showAsAction="never"
         android:title="@string/menu_deleteDatabase"/>
+     
+     <item
+        android:id="@+id/menu_showUsageReport"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+        android:title="@string/menu_showUsageReport"/>
     
     <item
         android:id="@+id/menu_settings"
-        android:orderInCategory="300"
+        android:orderInCategory="400"
         android:showAsAction="never"
         android:title="@string/menu_settings"/>
     

@@ -13,7 +13,7 @@ import android.content.Context;
 public abstract class DateUtil {
 
 	/**
-	 * Diese Methode wandelt ein übergebenes Datumsobjekt in einen String um
+	 * Diese Methode wandelt ein ï¿½bergebenes Datumsobjekt in einen String um
 	 * 
 	 * @param date
 	 *            beliebiges Datumsobjekt
@@ -27,7 +27,7 @@ public abstract class DateUtil {
 
 	/**
 	 * Diese Methode addiert oder substrahiert eine Anzahl von Jahren von einem
-	 * übergebenen Datumsobjekt.
+	 * ï¿½bergebenen Datumsobjekt.
 	 * 
 	 * @param baseDate
 	 *            beliebiges Datumsobjekt
@@ -44,23 +44,55 @@ public abstract class DateUtil {
 
 	}
 
-	public static String parseDateForLocale(final String dateString,
+	public static String parseDateStringForLocale(final String dateString,
+			final Context context) {
+		Date date = null;
+		String dateForLocale = null;
+		try {
+			date = convertStringToDate(dateString, context);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			dateForLocale = parseDateForLocale(date, context);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dateForLocale;
+	}
+
+	public static String parseDateForLocale(final Date date,
 			final Context context) throws ParseException {
-		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd",
-				Locale.getDefault());
 		DateFormat formatterLocale = new SimpleDateFormat(
 				context.getString(R.string.simple_date_format_pattern),
 				Locale.getDefault());
-		Date date = formatter.parse(dateString);
 		return formatterLocale.format(date);
 	}
 
+	public static Date convertStringToDate(final String dateString,
+			final Context context) throws ParseException {
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd",
+				Locale.getDefault());
+		Date date = formatter.parse(dateString);
+		return date;
+	}
+
+	// Diese Methode fï¿½gt bei einer einstelligen Nummer eine fï¿½hrende Null hinzu
+	// Dies dient dazu, einstellige Monatszahlen (z. B. Monat 1 fï¿½r Januar) mit
+	// fï¿½hrender Null zu speichern
 	public static String convert(final int number, final int digit) {
 		String buffer = String.valueOf(number);
 		while (buffer.length() != digit) {
 			buffer = "0" + buffer;
 		}
 		return buffer;
+	}
+
+	public static Date parseTimeString(final String time) {
+		return null;
+
 	}
 
 }
