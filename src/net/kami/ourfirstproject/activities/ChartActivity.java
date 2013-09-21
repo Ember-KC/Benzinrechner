@@ -23,7 +23,6 @@ import android.widget.LinearLayout;
 
 public class ChartActivity extends Activity {
 
-	private List<FuelEntry> fuelEntries;
 	private XYMultipleSeriesRenderer multipleRenderer = new XYMultipleSeriesRenderer();
 	private GraphicalView mChartView;
 	private XYMultipleSeriesDataset multipleSeries;
@@ -39,17 +38,29 @@ public class ChartActivity extends Activity {
 
 		// set some properties on the main renderer
 		multipleRenderer.setApplyBackgroundColor(false);
-		multipleRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));
+		multipleRenderer.setBackgroundColor(getResources().getColor(
+				R.color.white));
 		multipleRenderer.setAxisTitleTextSize(16);
 		multipleRenderer.setLabelsTextSize(15);
 		multipleRenderer.setLegendTextSize(15);
-		multipleRenderer.setMargins(new int[] { 20, 30, 15, 0 });
+		multipleRenderer.setMargins(new int[] { 10, 20, 10, 10 });
 		multipleRenderer.setPointSize(5);
-
-		fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(this);
+		multipleRenderer.setShowLegend(false);
+		multipleRenderer.setZoomRate(-10);
+		multipleRenderer.setYAxisMin(3);
+		multipleRenderer.setYAxisMax(15);
+		multipleRenderer.setYLabelsPadding(15);
+		multipleRenderer.setXLabelsPadding(15);
+		multipleRenderer
+				.setMarginsColor(getResources().getColor(R.color.white));
+		multipleRenderer.setAxesColor(Color.DKGRAY);
+		multipleRenderer.setShowAxes(true);
+		List<FuelEntry> fuelEntries = FuelEntryDAO.getInstance()
+				.getEntryForListView(this);
 		XYSeries fuelSeries = new XYSeries(this.getString(R.string.date));
 		int i = 1;
 		for (FuelEntry fe : fuelEntries) {
+			// TODO Datum in double umrechnen und statt i der Series hinzufügen
 			fuelSeries.add(i, fe.getUsage());
 			i++;
 		}
@@ -61,6 +72,7 @@ public class ChartActivity extends Activity {
 		renderer.setFillPoints(true);
 		renderer.setDisplayChartValues(true);
 		renderer.setDisplayChartValuesDistance(10);
+		renderer.setColor(Color.RED);
 
 		multipleRenderer.addSeriesRenderer(renderer);
 
@@ -70,7 +82,7 @@ public class ChartActivity extends Activity {
 					multipleRenderer);
 			multipleRenderer.setSelectableBuffer(100);
 			layout.addView(mChartView, new LayoutParams(
-					LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		} else
 			mChartView.repaint();
 	}

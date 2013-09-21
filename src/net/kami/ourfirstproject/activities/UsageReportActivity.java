@@ -18,7 +18,6 @@ import android.webkit.WebView;
 public class UsageReportActivity extends Activity {
 
 	private WebView webView;
-	private List<FuelEntry> fuelEntries;
 
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -28,17 +27,19 @@ public class UsageReportActivity extends Activity {
 		webView = (WebView) findViewById(R.id.usageReportTable);
 
 		String customHtml = "<html><body><table border =1><tr><td> "
-				+ R.string.date + "</td><td>Kilometer</td><td>"
-				+ R.string.liters + "</td><td> " + R.string.usage
-				+ " </td></tr>" + generateTable(this)
-				+ " </table></body></html>";
+				+ getResources().getString(R.string.date) + "</td><td>"
+				+ getResources().getString(R.string.kilometers) + "</td><td>"
+				+ getResources().getString(R.string.liters) + "</td><td> "
+				+ getResources().getString(R.string.usage) + " </td></tr>"
+				+ generateTable(this) + " </table></body></html>";
 
 		webView.loadData(customHtml, "text/html", "UTF-8");
 
 	}
 
 	private String generateTable(Context context) {
-		fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(this);
+		List<FuelEntry> fuelEntries = FuelEntryDAO.getInstance()
+				.getEntryForListView(this);
 		Comparator<FuelEntry> descendingOrder = Collections.reverseOrder();
 		Collections.sort(fuelEntries, descendingOrder);
 		String date = null;

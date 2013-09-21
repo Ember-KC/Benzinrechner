@@ -8,6 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="horizontal"
     android:baselineAligned="false"
+    android:background="#FFFFFF"
     tools:context=".ChartActivity" >
     
     <LinearLayout
@@ -15,7 +16,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.81"
-        android:orientation="horizontal" />
+        android:orientation="horizontal" 
+        android:background="#FFFFFF"/>
    
 
 </LinearLayout>

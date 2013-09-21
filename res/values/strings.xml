@@ -54,7 +54,7 @@
     <string name="liters">Liter</string>
     <string name="kilometers">km</string>
     <string name="usage">Verbrauch/100 km</string>
-    <string name="title_activity_chart">ChartActivity</string>
+    <string name="title_activity_chart">Verbrauchsauswertung</string>
     <string name="menu_showUsageChart">Grafische Auswertung</string>
 
 </resources>
