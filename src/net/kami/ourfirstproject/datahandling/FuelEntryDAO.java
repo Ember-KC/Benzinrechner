@@ -15,14 +15,14 @@ public final class FuelEntryDAO {
 	private static FuelEntryDAO instance = null;
 
 	/**
-	 * Default-Konstruktor, der nicht außerhalb dieser Klasse aufgerufen werden
+	 * Default-Konstruktor, der nicht auï¿½erhalb dieser Klasse aufgerufen werden
 	 * kann
 	 */
 	private FuelEntryDAO() {
 	}
 
 	/**
-	 * Statische Methode, liefert die einzige Instanz dieser Klasse zurück
+	 * Statische Methode, liefert die einzige Instanz dieser Klasse zurï¿½ck
 	 */
 	public static FuelEntryDAO getInstance() {
 		if (instance == null) {
@@ -75,12 +75,12 @@ public final class FuelEntryDAO {
 
 	public void deleteSelectedEntries(
 			final Collection<FuelEntry> fuelEntryList, final Context context) {
-		for (FuelEntry fe : fuelEntryList) {
-			String date = fe.getDate().toString();
-			String kilometer = Double.toString(fe.getKilometers());
-			String liter = Double.toString(fe.getLiters());
-			String usage = Double.toString(fe.getUsage());
-			DBHelper dbh = new DBHelper(context);
+        DBHelper dbh = new DBHelper(context);
+        for (FuelEntry fe : fuelEntryList) {
+            String date = fe.getDate().toString();
+            String kilometer = Double.toString(fe.getKilometers());
+            String liter = Double.toString(fe.getLiters());
+            String usage = Double.toString(fe.getUsage());
 			dbh.delete(date, kilometer, liter, usage);
 
 		}
@@ -89,12 +89,12 @@ public final class FuelEntryDAO {
 
 	public void saveEntry(final List<FuelEntry> fuelEntryList,
 			final Context context) {
-		for (FuelEntry fe : fuelEntryList) {
-			String date = fe.getDate().toString();
-			String kilometer = Double.toString(fe.getKilometers());
-			String liter = Double.toString(fe.getLiters());
-			String usage = Double.toString(fe.getUsage());
-			DBHelper dbh = new DBHelper(context);
+        DBHelper dbh = new DBHelper(context);
+        for (FuelEntry fe : fuelEntryList) {
+            String date = fe.getDate().toString();
+            String kilometer = Double.toString(fe.getKilometers());
+            String liter = Double.toString(fe.getLiters());
+            String usage = Double.toString(fe.getUsage());
 			dbh.insert(date, kilometer, liter, usage);
 		}
 
