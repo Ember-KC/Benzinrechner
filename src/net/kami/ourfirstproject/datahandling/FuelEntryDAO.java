@@ -73,6 +73,26 @@ public final class FuelEntryDAO {
 		return fuelEntries;
 	}
 
+    public int getUsageEntryCount(final Context context) {
+        int count = 0;
+        List<FuelEntry> fuelEntries = new ArrayList<FuelEntry>();
+        DBHelper dbh = new DBHelper(context);
+        String selectQuery = "SELECT COUNT(*) FROM "
+                + DBHelper.getTableNameUsage()+";";
+
+        SQLiteDatabase db = dbh.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+
+        cursor.close();
+        db.close();
+
+        return count;
+    }
+
 	public void deleteSelectedEntries(
 			final Collection<FuelEntry> fuelEntryList, final Context context) {
         DBHelper dbh = new DBHelper(context);

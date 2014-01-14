@@ -37,6 +37,11 @@
     <string name="simple_date_format_pattern">dd.MM.yyyy</string>
     <string name="menu_delete_entry">Eintrag löschen</string>
     <string name="contextmenu_title">Mögliche Aktionen</string>
+    <string name="delete_existing_entries">Bereits vorhandene Einträge löschen?</string>
+    <string name="title_import">Datenimport</string>
+    <string name="button_yes">Ja</string>
+    <string name="button_no">Nein</string>
+    <string name="button_cancel">Abbrechen</string>
     <string name="confirm_delete">Löschen bestätigen</string>
     <string name="delete_entry_question">Möchten Sie diesen Eintrag wirklich löschen?</string>
     <string name="error_write_xml">Fehler beim Schreiben der XML-Datei</string>

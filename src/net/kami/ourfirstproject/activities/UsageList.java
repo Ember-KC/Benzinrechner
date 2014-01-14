@@ -119,7 +119,7 @@ public class UsageList extends ListActivity {
         alertDialog.show();
     }
 
-    private void updateList() {
+    public void updateList() {
         // zun�chst Cursor, dann Liste aktualisieren
         listAdapter.clear();
         fuelEntries = FuelEntryDAO.getInstance().getEntryForListView(this);
