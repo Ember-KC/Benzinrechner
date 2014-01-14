@@ -58,6 +58,14 @@
                 android:value="net.kami.ourfirstproject.MainActivity" />
         </activity>
         <activity
+                android:name=".utils.filechooser.FileChooser"
+                android:label="@string/title_usage_delete_list"
+                android:parentActivityName="net.kami.ourfirstproject.activities.MainActivity" >
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="net.kami.ourfirstproject.MainActivity" />
+        </activity>
+        <activity
             android:name="net.kami.ourfirstproject.activities.UsageReportActivity"
             android:label="@string/title_activity_usage_report" >
             <meta-data

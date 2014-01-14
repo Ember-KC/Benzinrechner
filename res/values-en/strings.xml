@@ -42,20 +42,20 @@
     <string name="error_write_xml">Error writing XML file</string>
     <string name="list_exported">List exported to \u0020</string>
     <string name="empty_list">List is empty. Export has been aborted.</string>
+    <string name="import_failure">An error has occured. Import failed.</string>
+    <string name="import_success">%1$s entries have benn successfully imported.</string>
     <string name="title_usage_delete_list">Delete entries</string>
+    <string name="title_file_chooser_list">File Chooser</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="title_activity_usage_report">Usage Report</string>
     <string name="action_settings">Settings</string>
     <string name="menu_showUsageReport">Show report</string>
-    
-    
-    
-    
-    
-     
-    
-    
-    
+    <string name="parentDirectory">Parent Directory</string>
+    <string name="folder">Directory</string>
+    <string name="fileSize">File Size</string>
+    <string name="currentDir">Current Dir</string>
+    <string name="menu_importXML">Import list (XML)</string>
+    <string name="menu_showUsageChart">Graph</string>
 
 </resources>

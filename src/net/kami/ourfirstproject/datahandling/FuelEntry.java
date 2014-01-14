@@ -13,6 +13,12 @@ public class FuelEntry implements Comparable<FuelEntry> {
 	@Element
 	private double usage;
 
+    // Privater Default-Konstruktor wird für das Importieren von FuelEntries aus einer XML-Datei benötigt.
+    // Das Framework Simple XML verwendet den Default-Konstruktor per Reflection.
+    private FuelEntry(){
+
+    };
+
 	public FuelEntry(final double pLiters, final double pKilometers,
 			final String pDate, final double pUsage) {
 		this.liters = pLiters;
@@ -59,4 +65,18 @@ public class FuelEntry implements Comparable<FuelEntry> {
 		return this.getDate().compareTo(another.getDate());
 	}
 
+//    @Override
+//    public boolean equals(Object o) {
+//        return super.equals(o);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = 31 + age;
+//        result = 31 * result + ((name == null) ? 0 : name.hashCode());
+//        long temp = Double.doubleToLongBits( kilometers );
+//        result = 31 * result + (int) (temp ^ (temp >>> 32));
+//
+//        return result;
+//    }
 }

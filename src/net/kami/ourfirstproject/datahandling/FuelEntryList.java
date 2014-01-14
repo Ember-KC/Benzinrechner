@@ -9,7 +9,7 @@ import org.simpleframework.xml.Root;
 @Root
 public class FuelEntryList {
 
-	@ElementList
+	@ElementList(inline = true)
 	private List<FuelEntry> fuelEntries = new ArrayList<FuelEntry>();
 
 	public final List<FuelEntry> getFuelEntries() {
