@@ -31,13 +31,19 @@ public abstract class UsageListImporter {
         Serializer deserializer = new Persister();
 
         File file = new File(filename);
-        FuelEntryList read = null;
+        FuelEntryList read;
         try {
             read = deserializer.read(FuelEntryList.class, file);
-            if (FuelEntryDAO.getInstance().getUsageEntryCount(context)> 0) {
-                showAlertDialog(context, read);
+            if (read != null && read.getFuelEntries().size() > 0) {
+                // Falls Einträge vorhanden sind, den Importprozess starten
+                if (FuelEntryDAO.getInstance().getUsageEntryCount(context) > 0) {
+                    showAlertDialog(context, read);
+                } else {
+                    importEntries(context, read, false);
+                }
             } else {
-                importEntries(context, read , false);
+                // Falls keine Einträge vorhanden sind, Toast ausgeben
+                Toast.makeText(context, "Keine Daten für den Import gefunden.", Toast.LENGTH_LONG);
             }
 
         } catch (Exception e) {
@@ -97,7 +103,7 @@ public abstract class UsageListImporter {
                 new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog,
                                         final int which) {
-                        Toast.makeText(context,"Import abgebrochen.", Toast.LENGTH_LONG);
+                        Toast.makeText(context, "Import abgebrochen.", Toast.LENGTH_LONG);
                     }
                 });
 
